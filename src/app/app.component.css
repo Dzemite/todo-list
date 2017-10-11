@@ -1,0 +1,10 @@
+:host {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+nav {
+  float: left;
+  width: 200px;
+}
+nav h4 {
+  margin: 4px 0 10px 0;
+}
