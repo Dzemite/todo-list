@@ -10,6 +10,10 @@ nav h4 {
 }
 
 h1.title {
-  background: #FFFF77;
-  color: #00AAFF;
+  display: block;
+  text-align: center;
+  margin-top: auto;
+  height: 100px;
+  background: #4000ff;
+  color: #FFFFFF;
 }
