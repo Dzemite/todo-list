@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from "./todo-list/todo-list.component";
+import {CategoriesComponent} from "./categories/categories.component";
 import { RouterModule } from "@angular/router";
 
 import { routes } from "./app.routes";
@@ -10,7 +11,8 @@ import { routes } from "./app.routes";
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent
+    TodoComponent,
+    CategoriesComponent
   ],
   imports: [
     BrowserModule,

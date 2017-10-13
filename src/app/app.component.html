@@ -1,15 +1,11 @@
 <h1 class="title">ToDo List</h1>
 
-<router-outlet></router-outlet>
+<div class="flex-container">
+  <nav>
+    <categories></categories>
+  </nav>
 
-<!--<nav>-->
-  <!--<h4>Catigories</h4>-->
-  <!--<li *ngFor="let category of catigories">{{category}}</li>-->
-<!--</nav>-->
-
-<!--<div>-->
-  <!--<input type="text">-->
-  <!--<button>save</button>-->
-  <!--<button>edit</button>-->
-  <!--<button>delete</button>-->
-<!--</div>-->
+  <div class="to-dos">
+    <router-outlet></router-outlet>
+  </div>
+</div>

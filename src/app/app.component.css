@@ -1,18 +1,30 @@
 :host {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-nav {
-  float: left;
-  width: 200px;
+
+.flex-container {
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
 }
-nav h4 {
-  margin: 4px 0 10px 0;
+
+nav {
+  flex-basis: 300px;
+  flex-grow: 0;
+  background-color: #9ca1a3;
+}
+
+.to-dos {
+  flex-basis: 100px;
+  flex-grow: 3;
+  margin-left: 50px;
 }
 
 h1.title {
   display: block;
   text-align: center;
   margin-top: auto;
+  margin-bottom: auto;
   height: 100px;
   background: #4000ff;
   color: #FFFFFF;
