@@ -1,10 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { HttpModule } from "@angular/http";
+import { RouterModule } from "@angular/router";
 
 import { AppComponent } from './app.component';
 import { TodoComponent } from "./todo-list/todo-list.component";
-import {CategoriesComponent} from "./categories/categories.component";
-import { RouterModule } from "@angular/router";
+import { TodosService } from "./db-services/todos.service";
+import { CategoriesComponent } from "./categories/categories.component";
+import { CategoriesService } from "./db-services/index";
 
 import { routes } from "./app.routes";
 
@@ -16,9 +19,10 @@ import { routes } from "./app.routes";
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [CategoriesService, TodosService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

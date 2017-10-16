@@ -1,3 +1,10 @@
-<div>
-  nav bar
+<input type="text" #newCategory>
+<button (click)="addNewCategory(newCategory.value)">Add</button>
+<div *ngFor="let category of categories">
+  <div>
+    <a href="">{{category.name}}</a>
+    <button>Edit</button>
+    <button (click)="deleteCategory(category._id)">Delete</button>
+  </div>
 </div>
+<div *ngIf="errorMessage">{{errorMessage}}</div>
