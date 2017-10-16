@@ -11,7 +11,8 @@ export class CategoriesComponent implements OnInit {
   categories: Category[];
   errorMessage: string;
 
-  constructor(private service: CategoriesService) {}
+  constructor(private service: CategoriesService) {
+  }
 
   ngOnInit() {
     console.log('categories initialized');
@@ -35,11 +36,27 @@ export class CategoriesComponent implements OnInit {
       );
   }
 
-  deleteCategory(id: any) {
-    this.service.deleteCategory(id)
-      .subscribe(
-        () => this.updateCategories(),
-        error => this.errorMessage = error
-      );
+  editCategory(category: Category) {
+    let newName = prompt('Put new name of this category.', category.name);
+
+    if (newName) {
+      category.name = newName;
+      this.service.editCategory(category)
+        .subscribe(
+          () => this.updateCategories(),
+          error => this.errorMessage = error
+        )
+    }
   }
+
+  deleteCategory(category: Category) {
+    confirm("Вы точно хотите удалить категорию " + category.name + "?") ?
+      this.service.deleteCategory(category._id)
+        .subscribe(
+          () => this.updateCategories(),
+          error => this.errorMessage = error
+        )
+      : null;
+    }
+    //TODO: Need to delete all to-dos this category contain
 }

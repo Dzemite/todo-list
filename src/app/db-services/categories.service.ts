@@ -28,6 +28,11 @@ export class CategoriesService {
       .catch(this.handleError);
   }
 
+  public editCategory(category: Category): Observable<Category> {
+    return this.http.put(this.url + "/" + category._id["$oid"] + this.key, category)
+      .catch(this.handleError);
+  }
+
   private extractCategories(response: Response) {
     let res = response.json(); console.log("response: ", res);
     let categories: Category[] = [];
