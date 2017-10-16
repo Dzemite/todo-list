@@ -12,12 +12,20 @@ nav {
   flex-basis: 300px;
   flex-grow: 0;
   background-color: #9ca1a3;
+  align-self: auto;
+  height: 500px;
+}
+
+nav div {
+  margin-left: 25px;
+  margin-top: 25px;
 }
 
 .to-dos {
   flex-basis: 100px;
   flex-grow: 3;
   margin-left: 50px;
+  margin-top: 25px;
 }
 
 h1.title {

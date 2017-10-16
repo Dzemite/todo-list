@@ -8,6 +8,7 @@ import { TodoComponent } from "./todo-list/todo-list.component";
 import { TodosService } from "./db-services/todos.service";
 import { CategoriesComponent } from "./categories/categories.component";
 import { CategoriesService } from "./db-services/index";
+import { StartPage } from "./start-page/start-page.component";
 
 import { routes } from "./app.routes";
 
@@ -15,7 +16,8 @@ import { routes } from "./app.routes";
   declarations: [
     AppComponent,
     TodoComponent,
-    CategoriesComponent
+    CategoriesComponent,
+    StartPage
   ],
   imports: [
     BrowserModule,
