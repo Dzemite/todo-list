@@ -1,30 +1,26 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { HttpModule } from "@angular/http";
-import { RouterModule } from "@angular/router";
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
+import {HttpModule} from "@angular/http";
 
-import { AppComponent } from './app.component';
-import { TodoComponent } from "./todo-list/todo-list.component";
-import { TodosService } from "./db-services/todos.service";
-import { CategoriesComponent } from "./categories/categories.component";
-import { CategoriesService } from "./db-services/index";
-import { StartPage } from "./start-page/start-page.component";
+import {AppComponent} from './app.component';
+import {HomePageComponent} from "./home-page/home-page.component";
 
-import { routes } from "./app.routes";
+import {AppRoutingModule} from "./app-routing.module";
+import {TodoModule} from "./todo/todo.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    TodoComponent,
-    CategoriesComponent,
-    StartPage
+    HomePageComponent
   ],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     HttpModule,
-    RouterModule.forRoot(routes)
+    TodoModule
   ],
-  providers: [CategoriesService, TodosService],
+  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

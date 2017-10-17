@@ -5,7 +5,7 @@ import {Component, OnInit} from "@angular/core";
   selector: "todo-list",
   templateUrl: "todo-list.component.html"
 })
-export class TodoComponent implements OnInit {
+export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     console.log("to-dos initialized");

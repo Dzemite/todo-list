@@ -1,11 +1,11 @@
 import {Injectable} from "@angular/core";
 import {Http, Response} from "@angular/http";
-import {Todo_list} from "../todo-list/todo-list";
 import {Observable} from "rxjs";
-import {AppSettings} from "../app.settings";
+import {Todo_list} from "../todo-list/todo";
+import {AppSettings} from "../../app.settings";
 
 @Injectable()
-export class TodosService {
+export class TodoListService {
   private url = AppSettings.API_DB;
   private key = AppSettings.API_KEY;
 

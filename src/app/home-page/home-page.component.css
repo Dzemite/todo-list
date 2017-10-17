@@ -1,0 +1,23 @@
+h2.greeting {
+  color: #d6dbdd;
+  text-align: center;
+  margin-top: 50px;
+  font-size: xx-large;
+}
+
+button {
+  width: 200px;
+  padding: 10px;
+  margin: auto;
+  background: #ffffff;
+}
+
+h1.title {
+  display: block;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100px;
+  background: #4000ff;
+  color: #FFFFFF;
+}

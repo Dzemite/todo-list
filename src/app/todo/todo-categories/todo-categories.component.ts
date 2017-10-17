@@ -1,11 +1,11 @@
 import {Component, OnInit} from "@angular/core";
-import {CategoriesService} from "../db-services/index";
+import {CategoriesService} from "../todo-services/categories.service";
 import {Category} from "./category";
 
 @Component({
   moduleId: module.id,
   selector: "categories",
-  templateUrl: "./categories.component.html"
+  templateUrl: "todo-categories.component.html"
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[];
@@ -15,7 +15,6 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('categories initialized');
     this.updateCategories();
   }
 
