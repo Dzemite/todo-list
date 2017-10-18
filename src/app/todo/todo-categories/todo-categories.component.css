@@ -1,0 +1,20 @@
+input {
+  width: 203px;
+}
+
+.categories {
+  margin-top: 10px;
+}
+
+.category {
+  border: 1px solid #9ca1a3;
+  width: 236px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #d6d6d6;
+}
+
+a.category-name {
+  cursor: pointer;
+  flex-basis: 171px;
+}

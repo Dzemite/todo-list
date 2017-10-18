@@ -5,11 +5,25 @@ import {TodoListComponent} from "./todo-list/todo-list.component";
 
 @NgModule({
   imports: [RouterModule.forChild([
-    {path: "todo", component: TodoComponent},
-    {path: "todo/:id", component: TodoListComponent}
+    {
+      path: "",
+      redirectTo: "/todo",
+      pathMatch: "full"
+    },
+    {
+      path: "todo",
+      component: TodoComponent,
+      children: [
+        {
+          path: ":id",
+          component: TodoListComponent
+        }
+      ]
+    }
   ])],
   exports: [
     RouterModule
   ]
 })
-export class TodoRoutingModule {}
+export class TodoRoutingModule {
+}

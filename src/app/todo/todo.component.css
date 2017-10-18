@@ -4,7 +4,7 @@
   align-content: flex-start;
 }
 
-nav {
+div.desk {
   flex-basis: 300px;
   flex-grow: 0;
   background-color: #9ca1a3;
@@ -12,7 +12,7 @@ nav {
   height: 500px;
 }
 
-nav div {
+div.content {
   margin-left: 25px;
   margin-top: 25px;
 }
@@ -21,15 +21,4 @@ nav div {
   flex-basis: 100px;
   flex-grow: 3;
   margin-left: 50px;
-  margin-top: 25px;
-}
-
-h1.title {
-  display: block;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
-  height: 100px;
-  background: #4000ff;
-  color: #FFFFFF;
 }

@@ -1,10 +1,16 @@
+<h3>Categories</h3>
+
 <input type="text" #newCategory>
-<button type="submit" (click)="addNewCategory(newCategory.value)">Add</button>
-<div *ngFor="let category of categories">
-  <div>
-    <a href="">{{category.name}}</a>
-    <button (click)="editCategory(category)">Edit</button>
-    <button (click)="deleteCategory(category)">Delete</button>
+<button type="submit" (click)="addNewCategory(newCategory.value)"><fa name="plus"></fa></button>
+<div class="categories">
+  <div *ngFor="let category of categories">
+    <div class="category">
+      <a class="category-name" (click)="onSelect(category._id)">{{category.name}}</a>
+      <div class="buttons">
+        <button (click)="editCategory(category)"><fa name="pencil-square-o"></fa></button>
+        <button (click)="deleteCategory(category)"><fa name="trash"></fa></button>
+      </div>
+    </div>
   </div>
 </div>
 <div *ngIf="errorMessage">{{errorMessage}}</div>

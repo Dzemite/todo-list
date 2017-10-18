@@ -1,5 +1,16 @@
-<div>
-  <a>todo 1</a><br />
-  <a>todo 2</a><br />
-  <a>todo 3</a><br />
+<h2>Here must be a category name</h2>
+
+<input type="text" #newTodo>
+<button type="submit" (click)="addNewTodo(newTodo.value)"><fa name="plus"></fa></button>
+
+<div class="todo-content">
+  <ul>
+    <li *ngFor="let todo of todos">
+      {{todo.name}}
+      <div class="buttons">
+        <button (click)="editTodo(todo)"><fa name="pencil-square-o"></fa></button>
+        <button (click)="deleteTodo(todo)"><fa name="trash"></fa></button>
+      </div>
+    </li>
+  </ul>
 </div>

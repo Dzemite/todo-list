@@ -7,18 +7,24 @@ import {CategoriesComponent} from "./todo-categories/todo-categories.component";
 import {TodoComponent} from "./todo.component";
 
 import {CategoriesService} from "./todo-services/categories.service";
+import {TodoListService} from "./todo-services/todo-list.service";
+import {AngularFontAwesomeModule} from "angular-font-awesome/index";
 
 @NgModule({
   imports: [
     CommonModule,
-    TodoRoutingModule
+    TodoRoutingModule,
+    AngularFontAwesomeModule
   ],
   declarations: [
     TodoComponent,
     CategoriesComponent,
     TodoListComponent
   ],
-  providers: [CategoriesService]
+  providers: [
+    CategoriesService,
+    TodoListService
+  ]
 })
 export class TodoModule {
 }

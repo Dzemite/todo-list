@@ -1,3 +1,14 @@
 :host {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
+
+h1.title {
+  display: block;
+  text-align: center;
+  margin-top: auto;
+  margin-bottom: auto;
+  height: 100px;
+  background: #4000ff;
+  color: #FFFFFF;
+}
+

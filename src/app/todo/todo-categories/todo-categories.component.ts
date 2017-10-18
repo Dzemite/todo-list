@@ -1,25 +1,30 @@
 import {Component, OnInit} from "@angular/core";
 import {CategoriesService} from "../todo-services/categories.service";
 import {Category} from "./category";
+import {Router} from "@angular/router";
+import {TodoListService} from "../todo-services/todo-list.service";
 
 @Component({
   moduleId: module.id,
   selector: "categories",
-  templateUrl: "todo-categories.component.html"
+  templateUrl: "todo-categories.component.html",
+  styleUrls: ["todo-categories.component.css"]
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[];
   errorMessage: string;
 
-  constructor(private service: CategoriesService) {
+  constructor(private router: Router,
+              private service: CategoriesService,
+              private todoService: TodoListService) {
   }
 
   ngOnInit() {
     this.updateCategories();
   }
 
-  updateCategories() {
-    let categories = this.service.getCategories()
+  private updateCategories() {
+    this.service.getCategories()
       .subscribe(
         categories => this.categories = categories,
         error => this.errorMessage = error
@@ -49,13 +54,25 @@ export class CategoriesComponent implements OnInit {
   }
 
   deleteCategory(category: Category) {
-    confirm("Вы точно хотите удалить категорию " + category.name + "?") ?
+
+    let _delete = () => {
       this.service.deleteCategory(category._id)
         .subscribe(
-          () => this.updateCategories(),
+        () => {
+          this.updateCategories();
+          this.router.navigate(['/todo']);
+        },
           error => this.errorMessage = error
-        )
-      : null;
-    }
-    //TODO: Need to delete all to-dos this category contain
+        );
+
+      this.todoService.deleteTodosWithCategoryID(category._id);
+    };
+
+    !confirm("Вы точно хотите удалить категорию " + category.name + "?") ? null : _delete();
+  }
+
+
+  onSelect(selected: any) {
+    this.router.navigate(["/todo", selected.$oid]);
+  }
 }
