@@ -1,7 +1,7 @@
 import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {TodoListService} from "../todo-services/todo-list.service";
-import {Todo} from "./todo";
+import {Todos} from "./todo";
 
 @Component({
   moduleId: module.id,
@@ -11,12 +11,13 @@ import {Todo} from "./todo";
 })
 export class TodoListComponent implements OnInit {
 
-  todos: Todo[];
+  todos: Todos;
   errorMessage: string;
   categoryId: string;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private service: TodoListService) {  }
+              private service: TodoListService) {
+  }
 
   ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
@@ -26,34 +27,37 @@ export class TodoListComponent implements OnInit {
   }
 
   addNewTodo(newTodo: string) {
-    var todo: Todo = new Todo(null, newTodo, false, this.categoryId);
-    this.service.addTodo(todo)
+    this.todos.tasks.push({name: newTodo, completed: false});
+    this.service.refrashTodo(this.todos)
       .subscribe(
-        () => this.updateTodos(),
+        () => {},
         error => this.errorMessage = error
       );
   }
 
-  editTodo(todo: Todo) {
-    let newTodo = prompt('Put new todo.', todo.name);
+  editTodo(todo: any, index: number) {
+    let newTodo = prompt('Put new task.', todo.name);
 
     if (newTodo) {
-      todo.name = newTodo;
-      this.service.editTodo(todo)
+      this.todos.tasks[index].name = newTodo;
+      this.service.refrashTodo(this.todos)
         .subscribe(
-          () => this.updateTodos(),
+          () => {},
           error => this.errorMessage = error
         )
     }
   }
 
-  deleteTodo(todo: Todo) {
+  deleteTodo(todo: any, index: number) {
     confirm("Вы точно хотите удалить задачу " + todo.name + "?") ?
-      this.service.deleteTodo(todo._id)
-        .subscribe(
-          () => this.updateTodos(),
-          error => this.errorMessage = error
-        )
+      (() => {
+        this.todos.tasks.splice(index, 1);
+        this.service.refrashTodo(this.todos)
+          .subscribe(
+            () => {},
+            error => this.errorMessage = error
+          )
+      })()
       : null;
   }
 
@@ -61,7 +65,13 @@ export class TodoListComponent implements OnInit {
     this.service.getTodos(this.categoryId)
       .subscribe(
         todos => this.todos = todos,
-        error => this.errorMessage = error
+        error => {
+          this.errorMessage = error;
+          if (!this.todos._id) {
+            this.service.createTodoList(this.categoryId)
+          };
+          console.log("todoes: ", this.todos);
+        }
       );
   }
 }

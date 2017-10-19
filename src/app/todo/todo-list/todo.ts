@@ -1,13 +1,15 @@
-export class Todo {
+export class Todos {
   public _id: string;
-  public name: string;
-  public completed: boolean;
+  public tasks: {name: string, completed: boolean}[];
   public categoryID: string;
 
-  constructor(id, name, completed, categoryId) {
+  constructor(id, tasks, categoryId) {
     this._id = id;
-    this.name = name;
-    this.completed = completed;
+    this.tasks = tasks;
     this.categoryID = categoryId;
+  }
+
+  public addNewTask(){
+
   }
 }

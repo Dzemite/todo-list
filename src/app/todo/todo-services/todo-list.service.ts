@@ -1,7 +1,7 @@
-import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
+import {Injectable, resolveForwardRef} from "@angular/core";
+import {Http, Response, RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
-import {Todo} from "../todo-list/todo";
+import {Todos} from "../todo-list/todo";
 import {AppSettings} from "../../app.settings";
 
 @Injectable()
@@ -13,7 +13,7 @@ export class TodoListService {
   constructor(private http: Http) {
   }
 
-  public getTodos(categoryId: string): Observable<Todo[]> {
+  public getTodos(categoryId: string): Observable<Todos> {
     let _url: string = this.url + '?q=' + JSON.stringify({categoryID: categoryId}) + '&' + this.key;
 
     return this.http.get(_url)
@@ -21,24 +21,26 @@ export class TodoListService {
       .catch(this.handleError);
   }
 
-  public addTodo(todo: Todo): Observable<Todo> {
-    return this.http.post(this.baseUrl, todo)
+  public refrashTodo(todos: Todos): Observable<Todos> {
+    let data = JSON.stringify({
+      "$set": {
+        "tasks": todos.tasks
+      }
+    });
+    let headers = new Headers({ 'Content-Type': 'application/json' });
+    let options = new RequestOptions({ headers: headers });
+
+    return this.http.put(this.url + '/' + todos._id["$oid"] + '?' + this.key, data, options)
       .catch(this.handleError);
   }
 
-  public deleteTodo(todoId: any): Observable<Todo> {
-    return this.http.delete(this.url + "/" + todoId.$oid + '?' + this.key, todoId)
-      .catch(this.handleError);
+  public createTodoList(categoryID: string) {
+    this.refrashTodo(new Todos(null, [], categoryID));
   }
 
-  private deleteTodos(todos: Todo[]) {
-    for (let todo of todos) {
-      this.deleteTodo(todo._id)
-        .subscribe(
-          () => console.log('Deleting completed'),
-          error => console.log('Deleting completed with error: ' + error)
-        );
-    }
+  private deleteTodos(todos: Todos) {
+    return this.http.delete(this.url + "/" + todos._id["$oid"] + '?' + this.key)
+      .catch(this.handleError);
   }
 
   public deleteTodosWithCategoryID(categoryID: any) {
@@ -49,18 +51,10 @@ export class TodoListService {
       );
   }
 
-  public editTodo(todo: Todo): Observable<Todo> {
-    return this.http.put(this.url + "/" + todo._id["$oid"] + '?' + this.key, todo)
-      .catch(this.handleError);
-  }
-
   private extractToDos(response: Response) {
     let res = response.json();
-    let todos: Todo[] = [];
-    for (let i = 0; i < res.length; i++) {
-      todos.push(new Todo(res[i]._id, res[i].name, res[i].completed, res[i].categoryID));
-    }
-    return todos;
+
+    return new Todos(res[0]._id, res[0].tasks, res[0].categoryID);
   }
 
   private handleError(error: any, cought: Observable<any>): any {

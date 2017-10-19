@@ -5,11 +5,11 @@
 
 <div class="todo-content">
   <ul>
-    <li *ngFor="let todo of todos">
-      {{todo.name}}
+    <li *ngFor="let task of todos.tasks; let i = index">
+      {{task.name}}
       <div class="buttons">
-        <button (click)="editTodo(todo)"><fa name="pencil-square-o"></fa></button>
-        <button (click)="deleteTodo(todo)"><fa name="trash"></fa></button>
+        <button (click)="editTodo(task, i)"><fa name="pencil-square-o"></fa></button>
+        <button (click)="deleteTodo(task, i)"><fa name="trash"></fa></button>
       </div>
     </li>
   </ul>

@@ -34,7 +34,7 @@ export class CategoriesService {
   }
 
   private extractCategories(response: Response) {
-    let res = response.json(); console.log("response: ", res);
+    let res = response.json();
     let categories: Category[] = [];
     for (let i = 0; i < res.length; i++) {
       categories.push(new Category(res[i]._id, res[i].name));
