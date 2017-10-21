@@ -18,6 +18,7 @@ export class TodoListComponent implements OnInit {
   todos: Todo[];
   errorMessage: string;
   categoryId: string;
+  categoryName: string;
   todoForm: FormGroup;
 
   private newTodo: Todo = new Todo(null, null, false, null);
@@ -30,6 +31,7 @@ export class TodoListComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
       this.categoryId = params["id"];
+      this.categoryName = params["category"];
       this.refreshTodos();
     });
     this.buildForm();

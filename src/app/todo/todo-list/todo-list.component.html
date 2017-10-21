@@ -1,4 +1,4 @@
-<h2>Here must be a category name</h2>
+<h2>{{categoryName}}</h2>
 
 <form [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
   <div class="form-group">
@@ -9,7 +9,7 @@
 
 <div *ngFor="let todo of todos; let i = index">
   <div class="todo-content form-group">
-    <input type="checkbox" (click)="changeTodoCompleteField(i)" (blur)="updateTodo(todo)"/>
+    <input type="checkbox" (click)="changeTodoCompleteField(i)" (blur)="updateTodo(todo)" [checked]="isCompleted(todo)"/>
     <i [class]="isCompleted(todo)">
       {{todo.name}}
     </i>
