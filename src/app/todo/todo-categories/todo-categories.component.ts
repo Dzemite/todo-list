@@ -20,10 +20,10 @@ export class CategoriesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.updateCategories();
+    this.refreshCategories();
   }
 
-  private updateCategories() {
+  private refreshCategories() {
     this.service.getCategories()
       .subscribe(
         categories => this.categories = categories,
@@ -32,10 +32,11 @@ export class CategoriesComponent implements OnInit {
   }
 
   addNewCategory(newCategory: string) {
+    if (!newCategory) return;
     var category: Category = new Category(null, newCategory);
     this.service.addCategory(category)
       .subscribe(
-        () => this.updateCategories(),
+        () => this.refreshCategories(),
         error => this.errorMessage = error
       );
   }
@@ -47,7 +48,7 @@ export class CategoriesComponent implements OnInit {
       category.name = newName;
       this.service.editCategory(category)
         .subscribe(
-          () => this.updateCategories(),
+          () => this.refreshCategories(),
           error => this.errorMessage = error
         )
     }
@@ -59,7 +60,7 @@ export class CategoriesComponent implements OnInit {
       this.service.deleteCategory(category._id)
         .subscribe(
         () => {
-          this.updateCategories();
+          this.refreshCategories();
           this.router.navigate(['/todo']);
         },
           error => this.errorMessage = error
@@ -72,7 +73,7 @@ export class CategoriesComponent implements OnInit {
   }
 
 
-  onSelect(selected: any) {
-    this.router.navigate(["/todo", selected.$oid]);
+  onSelect(selected: Category) {
+    this.router.navigate(["/todo", selected._id["$oid"], {category: selected.name}]);
   }
 }

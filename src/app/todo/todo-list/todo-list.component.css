@@ -4,8 +4,22 @@ input {
 
 .todo-content {
   margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
 }
 
-li {
-
+input {
+  flex-basis: 20px;
 }
+
+i {
+  flex-basis: 500px;
+  flex-grow: 3;
+}
+
+i.task-completed {
+  text-decoration:line-through;
+}
+
+

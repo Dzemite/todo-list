@@ -1,11 +1,11 @@
 <h3>Categories</h3>
 
-<input type="text" #newCategory>
+<input type="text" #newCategory (keyup.enter)="addNewCategory(newCategory.value)">
 <button type="submit" (click)="addNewCategory(newCategory.value)"><fa name="plus"></fa></button>
 <div class="categories">
   <div *ngFor="let category of categories">
     <div class="category">
-      <a class="category-name" (click)="onSelect(category._id)">{{category.name}}</a>
+      <a class="category-name" (click)="onSelect(category)">{{category.name}}</a>
       <div class="buttons">
         <button (click)="editCategory(category)"><fa name="pencil-square-o"></fa></button>
         <button (click)="deleteCategory(category)"><fa name="trash"></fa></button>
