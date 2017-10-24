@@ -21,7 +21,7 @@ export class TodoListComponent implements OnInit {
   categoryName: string;
   todoForm: FormGroup;
 
-  private newTodo: Todo = new Todo(null, null, false, null);
+  private todoForFormValidate: Todo = new Todo(null, null, false, null);
 
 
   constructor(private activatedRoute: ActivatedRoute,
@@ -39,7 +39,7 @@ export class TodoListComponent implements OnInit {
 
   buildForm() {
     this.todoForm = this.fb.group({
-      "todo": [this.newTodo.name, [
+      "todo": [this.todoForFormValidate.name, [
         Validators.maxLength(55)
       ]]
     });

@@ -6,7 +6,7 @@ import {TodoListService} from "../todo-services/todo-list.service";
 
 @Component({
   moduleId: module.id,
-  selector: "categories",
+  selector: "todo-categories",
   templateUrl: "todo-categories.component.html",
   styleUrls: ["todo-categories.component.css"]
 })
