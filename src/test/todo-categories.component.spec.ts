@@ -39,7 +39,7 @@ describe('CategoriesComponent', () => {
 
   it('should create the categories component', async(() => {
     const fixture = TestBed.createComponent(CategoriesComponent);
-    const categ = fixture.componentInstance;
+    const categ = fixture.debugElement.componentInstance;
     expect(categ).toBeTruthy();
   }));
 });

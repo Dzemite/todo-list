@@ -1,27 +1,48 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from "@angular/router/testing";
+import {TestBed, async, ComponentFixture, inject} from '@angular/core/testing';
+import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
 import { HomePageComponent } from "../app/home-page/home-page.component";
+import { RouterLinkStubDirective } from "../testing-helpers/router-stubs";
 
 describe('HomePageComponent', () => {
+  let component: HomePageComponent,
+    fixture: ComponentFixture<HomePageComponent>,
+    de: DebugElement,
+    el: HTMLElement;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        RouterTestingModule
-      ],
       declarations: [
-        HomePageComponent
+        HomePageComponent,
+        RouterLinkStubDirective
       ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
   }));
-  it('should create the home page', async(() => {
-    const fixture = TestBed.createComponent(HomePageComponent);
-    const home = fixture.componentInstance;
-    expect(home).toBeTruthy();
-  }));
-  it('should render greet in a h2 tag', async(() => {
-    const fixture = TestBed.createComponent(HomePageComponent);
+
+  let links: RouterLinkStubDirective[],
+      linkDes: DebugElement[];
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(HomePageComponent);
+    component = fixture.componentInstance;
+
+    de = fixture.debugElement.query(By.css('h2'));
+    el = de.nativeElement;
+
     fixture.detectChanges();
-    const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('h2').textContent).toContain('Welcome to ToDo app');
-  }));
+    linkDes = fixture.debugElement
+      .queryAll(By.directive(RouterLinkStubDirective));
+    links = linkDes
+      .map(d => d.injector.get(RouterLinkStubDirective) as RouterLinkStubDirective);
+  });
+
+  // it('should render greet in a h2 tag', () => {
+  //   fixture.detectChanges();
+  //   expect(el.textContent).toContain('Welcome to ToDo app');
+  // });
+  it('can get RouterLinks from template', () => {
+    expect(links.length).toBe(1, 'should have 1 links');
+    expect(links[0].linkParams).toBe('/todo', '1st link should go to todo');
+  });
 });

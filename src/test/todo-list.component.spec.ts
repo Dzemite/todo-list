@@ -40,7 +40,7 @@ describe('TodoListComponent', () => {
 
   it('Should create the todo list', async(() => {
     const fixture = TestBed.createComponent(TodoListComponent);
-    const todoList = fixture.componentInstance;
+    const todoList = fixture.debugElement.componentInstance;
     expect(todoList).toBeTruthy();
   }));
 });

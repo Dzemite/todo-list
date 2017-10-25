@@ -38,7 +38,7 @@ describe('TodoComponent', () => {
   }));
   it('should create the todo component', async(() => {
     const fixture = TestBed.createComponent(TodoComponent);
-    const todo = fixture.componentInstance;
+    const todo = fixture.debugElement.componentInstance;
     expect(todo).toBeTruthy();
   }));
 });
