@@ -2,7 +2,9 @@ import {TestBed, async, ComponentFixture, inject} from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { HomePageComponent } from "../app/home-page/home-page.component";
-import { RouterLinkStubDirective } from "../testing-helpers/router-stubs";
+import { RouterLinkStubDirective } from "../testing-helpers/index";
+import {RouterStub} from "../testing-helpers/router-stubs";
+import {Router} from "@angular/router";
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent,
@@ -15,6 +17,9 @@ describe('HomePageComponent', () => {
       declarations: [
         HomePageComponent,
         RouterLinkStubDirective
+      ],
+      providers: [
+        { provide: Router, useClass: RouterStub }
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
@@ -37,10 +42,10 @@ describe('HomePageComponent', () => {
       .map(d => d.injector.get(RouterLinkStubDirective) as RouterLinkStubDirective);
   });
 
-  // it('should render greet in a h2 tag', () => {
-  //   fixture.detectChanges();
-  //   expect(el.textContent).toContain('Welcome to ToDo app');
-  // });
+  it('should render greet in a h2 tag', () => {
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Welcome to ToDo app');
+  });
   it('can get RouterLinks from template', () => {
     expect(links.length).toBe(1, 'should have 1 links');
     expect(links[0].linkParams).toBe('/todo', '1st link should go to todo');
