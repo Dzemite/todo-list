@@ -1,46 +1,47 @@
-import { TestBed, async } from '@angular/core/testing';
-import { RouterTestingModule } from "@angular/router/testing";
-import { TodoListComponent } from "../app/todo/todo-list/todo-list.component";
-import {ConnectionBackend, HttpModule, Http} from "@angular/http";
-import {CategoriesService} from "../app/todo/todo-services/categories.service";
-import {CategoriesComponent} from "../app/todo/todo-categories/todo-categories.component";
-import {TodoComponent} from "../app/todo/todo.component";
-import {ReactiveFormsModule, FormsModule} from "@angular/forms";
-import {AngularFontAwesomeModule} from "angular-font-awesome";
-import {TodoRoutingModule} from "../app/todo/todo-routing.module";
-import {CommonModule} from "@angular/common";
-import {TodoListService} from "../app/todo/todo-services/todo-list.service";
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { CategoriesComponent } from "../app/todo/todo-categories/todo-categories.component";
+import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
+import { By } from "@angular/platform-browser";
+import { Router } from "@angular/router";
+import { RouterStub } from "../testing-helpers/router-stubs";
+import { CategoriesService } from "../app/todo/todo-services/categories.service";
+import { HttpModule } from "@angular/http";
+import { TodoListService } from "../app/todo/todo-services/todo-list.service";
+
 
 describe('CategoriesComponent', () => {
+  let fixture: ComponentFixture<CategoriesComponent>,
+      component: CategoriesComponent,
+      de: DebugElement,
+      el: HTMLElement;
+
+
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [
-        CommonModule,
-        TodoRoutingModule,
-        AngularFontAwesomeModule,
-        FormsModule,
-        ReactiveFormsModule,
-        RouterTestingModule,
-        HttpModule
-      ],
       declarations: [
-        TodoComponent,
-        CategoriesComponent,
-        TodoListComponent
+        CategoriesComponent
       ],
+      imports: [HttpModule],
       providers: [
+        {provide: Router, useClass: RouterStub},
         CategoriesService,
-        TodoListService,
-        Http,
-        ConnectionBackend
-      ]
+        TodoListService
+      ],
+      schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
   }));
 
-  it('should create the categories component', async(() => {
-    const fixture = TestBed.createComponent(CategoriesComponent);
-    const categ = fixture.debugElement.componentInstance;
-    expect(categ).toBeTruthy();
-  }));
+  beforeEach(() => {
+    fixture = TestBed.createComponent(CategoriesComponent);
+    component = fixture.componentInstance;
+    de = fixture.debugElement.query(By.css('h3'));
+    el = de.nativeElement;
+  });
+
+  it('should render "Categories"', () => {
+    fixture.detectChanges();
+    expect(el.textContent).toContain('Categories');
+  });
 });
 

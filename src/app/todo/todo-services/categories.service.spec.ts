@@ -29,6 +29,7 @@ describe('Categories service', () => {
         let body = JSON.stringify(mockResponse);
         console.log("body: ", body);
 
+        //TODO: Need to fix: service can not get correct response
         mockBackend.connections.subscribe((connection) => {
           connection.mockRespond(new Response(new ResponseOptions({
             body: body

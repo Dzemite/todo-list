@@ -1,10 +1,10 @@
-import {TestBed, async, ComponentFixture, inject} from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
-import { HomePageComponent } from "../app/home-page/home-page.component";
-import { RouterLinkStubDirective } from "../testing-helpers/index";
-import {RouterStub} from "../testing-helpers/router-stubs";
-import {Router} from "@angular/router";
+import { HomePageComponent } from "./home-page.component";
+import { RouterLinkStubDirective } from "../../testing-helpers/index";
+import { RouterStub } from "../../testing-helpers/router-stubs";
+import { Router } from "@angular/router";
 
 describe('HomePageComponent', () => {
   let component: HomePageComponent,
