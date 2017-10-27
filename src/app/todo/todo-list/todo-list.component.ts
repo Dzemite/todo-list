@@ -2,7 +2,7 @@ import {Component, OnInit} from "@angular/core";
 import {ActivatedRoute, Params} from "@angular/router";
 import {TodoListService} from "../todo-services/todo-list.service";
 import {Todo} from "./todo";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
 
 @Component({
   moduleId: module.id,
@@ -21,9 +21,6 @@ export class TodoListComponent implements OnInit {
   categoryName: string;
   todoForm: FormGroup;
 
-  private todoForFormValidate: Todo = new Todo(null, null, false, null);
-
-
   constructor(private activatedRoute: ActivatedRoute,
               private service: TodoListService,
               private fb: FormBuilder) {  }
@@ -38,10 +35,8 @@ export class TodoListComponent implements OnInit {
   }
 
   buildForm() {
-    this.todoForm = this.fb.group({
-      "todo": [this.todoForFormValidate.name, [
-        Validators.maxLength(55)
-      ]]
+    this.todoForm = new FormGroup({
+      todo: new FormControl('', Validators.maxLength(55))
     });
   }
 
@@ -58,7 +53,8 @@ export class TodoListComponent implements OnInit {
   }
 
   addNewTodo(newTodo: string) {
-    if (!newTodo) return;
+    if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) return;
+    
     var todo: Todo = new Todo(null, newTodo, false, this.categoryId);
     this.service.addTodo(todo)
       .subscribe(

@@ -1,14 +1,14 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { CategoriesComponent } from "../app/todo/todo-categories/todo-categories.component";
+import { CategoriesComponent } from "./todo-categories.component";
 import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
 import { Router } from "@angular/router";
-import { RouterStub } from "../testing-helpers/router-stubs";
-import { CategoriesService } from "../app/todo/todo-services/categories.service";
+import { RouterStub } from "../../../testing-helpers/router-stubs";
+import { CategoriesService } from "../todo-services/categories.service";
 import { HttpModule } from "@angular/http";
-import { TodoListService } from "../app/todo/todo-services/todo-list.service";
+import { TodoListService } from "../todo-services/todo-list.service";
 import { Observable } from "rxjs";
-import { Category } from "../app/todo/todo-categories/category";
+import { Category } from "./category";
 
 
 describe('CategoriesComponent', () => {

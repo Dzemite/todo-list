@@ -1,9 +1,12 @@
 <h2>{{categoryName}}</h2>
 
-<form [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
+<form class="form-group" [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
   <div class="form-group">
     <input type="text" class="form-control"
-           formControlName="todo" required #newTodo>
+           formControlName="todo" #newTodo>
+    <div class="alert alert-danger" *ngIf="todoForm.get('todo').hasError('maxlength')">
+      <strong>To long task.</strong>
+    </div>
   </div>
 </form>
 
