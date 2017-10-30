@@ -11,10 +11,14 @@ import {HomePageComponent} from "./home-page/home-page.component";
 import {AppRoutingModule} from "./app-routing.module";
 import {TodoModule} from "./todo/todo.module";
 
+import {RouterLinkStubDirective, RouterOutletStubComponent} from "../testing-helpers/router-stubs";
+
 @NgModule({
   declarations: [
     AppComponent,
-    HomePageComponent
+    HomePageComponent,
+    RouterLinkStubDirective,
+    RouterOutletStubComponent
   ],
   imports: [
     BrowserModule,
