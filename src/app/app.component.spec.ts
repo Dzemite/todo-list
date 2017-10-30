@@ -2,6 +2,8 @@ import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { DebugElement, NO_ERRORS_SCHEMA } from "@angular/core";
 import { By } from "@angular/platform-browser";
+import { Router } from "@angular/router";
+import { RouterStub } from "../testing-helpers/router-stubs";
 
 describe('AppComponent', () => {
   let component: AppComponent,
@@ -13,6 +15,9 @@ describe('AppComponent', () => {
     TestBed.configureTestingModule({
       declarations: [
         AppComponent
+      ],
+      providers: [
+        {provide: Router, useClass: RouterStub}
       ],
       schemas: [ NO_ERRORS_SCHEMA ]
     }).compileComponents();
