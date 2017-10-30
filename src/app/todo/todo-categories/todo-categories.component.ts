@@ -69,7 +69,7 @@ export class CategoriesComponent implements OnInit {
       this.todoService.deleteTodosWithCategoryID(category._id);
     };
 
-    !confirm("Вы точно хотите удалить категорию " + category.name + "?") ? null : _delete();
+    confirm("Вы точно хотите удалить категорию " + category.name + "?") ? _delete() : null;
   }
 
 

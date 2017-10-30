@@ -1,5 +1,6 @@
 import "./rx-js.operators"
 
+import {AngularFontAwesomeModule} from "angular-font-awesome/index";
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {HttpModule} from "@angular/http";
@@ -19,7 +20,8 @@ import {TodoModule} from "./todo/todo.module";
     BrowserModule,
     AppRoutingModule,
     HttpModule,
-    TodoModule
+    TodoModule,
+    AngularFontAwesomeModule
   ],
   providers: [],
   bootstrap: [AppComponent]

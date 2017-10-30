@@ -1,6 +1,6 @@
 <h2>{{categoryName}}</h2>
 
-<form class="form-group" [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
+<form class="form-group" [class]="inputClasses()" [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
   <div class="form-group">
     <input type="text" class="form-control"
            formControlName="todo" #newTodo>

@@ -52,9 +52,15 @@ export class TodoListComponent implements OnInit {
       )
   }
 
+  inputClasses() {
+    if (this.todoForm.get('todo').hasError('maxlength')) {
+      return 'has-error'
+    }
+  }
+
   addNewTodo(newTodo: string) {
     if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) return;
-    
+
     var todo: Todo = new Todo(null, newTodo, false, this.categoryId);
     this.service.addTodo(todo)
       .subscribe(

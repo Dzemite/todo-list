@@ -3,10 +3,10 @@ import { NO_ERRORS_SCHEMA } from "@angular/core";
 import { Router, ActivatedRoute } from "@angular/router";
 import { HttpModule } from "@angular/http";
 import { Observable } from "rxjs";
-import { Todo } from "../app/todo/todo-list/todo";
-import { TodoListComponent } from "../app/todo/todo-list/todo-list.component";
-import { TodoListService } from "../app/todo/todo-services/todo-list.service";
-import { RouterStub } from "../testing-helpers/router-stubs";
+import { Todo } from "./todo";
+import { TodoListComponent } from "./todo-list.component";
+import { TodoListService } from "../todo-services/todo-list.service";
+import { RouterStub } from "../../../testing-helpers/router-stubs";
 import { FormBuilder } from "@angular/forms";
 
 

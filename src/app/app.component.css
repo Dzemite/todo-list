@@ -12,3 +12,10 @@ h1.title {
   color: #FFFFFF;
 }
 
+nav {
+  background: #4000ff;
+}
+
+nav button {
+  margin-left: 25px;
+}
