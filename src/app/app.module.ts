@@ -1,17 +1,17 @@
-import "./rx-js.operators"
+import './rx-js.operators';
 
-import {AngularFontAwesomeModule} from "angular-font-awesome/index";
+import {AngularFontAwesomeModule} from 'angular-font-awesome/index';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpModule} from "@angular/http";
+import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
-import {HomePageComponent} from "./home-page/home-page.component";
+import {HomePageComponent} from './home-page/home-page.component';
 
-import {AppRoutingModule} from "./app-routing.module";
-import {TodoModule} from "./todo/todo.module";
+import {AppRoutingModule} from './app-routing.module';
+import {TodoModule} from './todo/todo.module';
 
-import {RouterLinkStubDirective, RouterOutletStubComponent} from "../testing-helpers/router-stubs";
+import {RouterLinkStubDirective, RouterOutletStubComponent} from '../testing-helpers/router-stubs';
 
 @NgModule({
   declarations: [

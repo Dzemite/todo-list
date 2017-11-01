@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
-import {Observable} from "rxjs/Observable";
-import {Category} from "../todo-categories/category";
-import {AppSettings} from "../../app.settings";
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs/Observable';
+import {Category} from '../todo-categories/category';
+import {AppSettings} from '../../app.settings';
 
 @Injectable()
 export class CategoriesService {
@@ -24,18 +24,18 @@ export class CategoriesService {
   }
 
   public deleteCategory(categoryId: any): Observable<Category> {
-    return this.http.delete(this.url + "/" + categoryId.$oid + this.key, categoryId)
+    return this.http.delete(this.url + '/' + categoryId.$oid + this.key, categoryId)
       .catch(this.handleError);
   }
 
   public editCategory(category: Category): Observable<Category> {
-    return this.http.put(this.url + "/" + category._id["$oid"] + this.key, category)
+    return this.http.put(this.url + '/' + category._id['$oid'] + this.key, category)
       .catch(this.handleError);
   }
 
   private extractCategories(response: Response) {
-    let res = response.json();console.log('inApp response: ', JSON.stringify( response));
-    let categories: Category[] = [];
+    const res = response.json(); console.log('inApp response: ', JSON.stringify( response));
+    const categories: Category[] = [];
     for (let i = 0; i < res.length; i++) {
       categories.push(new Category(res[i]._id, res[i].name));
     }
@@ -43,11 +43,11 @@ export class CategoriesService {
   }
 
   private handleError(error: any, cought: Observable<any>): any {
-    let message = "";
+    let message = '';
 
     if (error instanceof Response) {
-      let errorData = error.json().error || JSON.stringify(error.json());
-      message = `${error.status} - ${error.statusText || ''} ${errorData}`
+      const errorData = error.json().error || JSON.stringify(error.json());
+      message = `${error.status} - ${error.statusText || ''} ${errorData}`;
     } else {
       message = error.message ? error.message : error.toString();
     }

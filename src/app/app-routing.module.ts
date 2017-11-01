@@ -1,15 +1,15 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
-import {HomePageComponent} from "./home-page/home-page.component";
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {HomePageComponent} from './home-page/home-page.component';
 
 @NgModule({
   imports: [RouterModule.forRoot([
     {
-      path: "",
-      redirectTo: "home",
-      pathMatch: "full"
+      path: '',
+      redirectTo: 'home',
+      pathMatch: 'full'
     },
-    {path: "home", component: HomePageComponent}
+    {path: 'home', component: HomePageComponent}
   ])],
   exports: [
     RouterModule

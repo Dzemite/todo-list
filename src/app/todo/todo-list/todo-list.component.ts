@@ -1,16 +1,16 @@
-import {Component, OnInit} from "@angular/core";
-import {ActivatedRoute, Params} from "@angular/router";
-import {TodoListService} from "../todo-services/todo-list.service";
-import {Todo} from "./todo";
-import {FormBuilder, FormGroup, Validators, FormControl} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {ActivatedRoute, Params} from '@angular/router';
+import {TodoListService} from '../todo-services/todo-list.service';
+import {Todo} from './todo';
+import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 
 @Component({
   moduleId: module.id,
-  selector: "todo-list",
-  templateUrl: "todo-list.component.html",
+  selector: 'todo-list',
+  templateUrl: 'todo-list.component.html',
   styleUrls: [
-    "todo-list.component.css",
-    "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css"
+    'todo-list.component.css',
+    '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
   ]
 })
 export class TodoListComponent implements OnInit {
@@ -27,8 +27,8 @@ export class TodoListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
-      this.categoryId = params["id"];
-      this.categoryName = params["category"];
+      this.categoryId = params['id'];
+      this.categoryName = params['category'];
       this.refreshTodos();
     });
     this.buildForm();
@@ -49,19 +49,19 @@ export class TodoListComponent implements OnInit {
       .subscribe(
         () => {},
         error => this.errorMessage = error
-      )
+      );
   }
 
   inputClasses() {
     if (this.todoForm.get('todo').hasError('maxlength')) {
-      return 'has-error'
+      return 'has-error';
     }
   }
 
   addNewTodo(newTodo: string) {
     if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) return;
 
-    var todo: Todo = new Todo(null, newTodo, false, this.categoryId);
+    const todo: Todo = new Todo(null, newTodo, false, this.categoryId);
     this.service.addTodo(todo)
       .subscribe(
         () => this.refreshTodos(),
@@ -70,7 +70,7 @@ export class TodoListComponent implements OnInit {
   }
 
   editTodo(todo: Todo) {
-    let newTodo = prompt('Put new todo.', todo.name);
+    const newTodo = prompt('Put new todo.', todo.name);
 
     if (newTodo) {
       todo.name = newTodo;
@@ -78,12 +78,12 @@ export class TodoListComponent implements OnInit {
         .subscribe(
           () => this.refreshTodos(),
           error => this.errorMessage = error
-        )
+        );
     }
   }
 
   deleteTodo(todo: Todo) {
-    confirm("Вы точно хотите удалить задачу " + todo.name + "?") ?
+    confirm('Вы точно хотите удалить задачу ' + todo.name + '?') ?
       this.service.deleteTodo(todo._id)
         .subscribe(
           () => this.refreshTodos(),
@@ -94,9 +94,9 @@ export class TodoListComponent implements OnInit {
 
   isCompleted(todo: Todo): string {
     if (!todo.completed) {
-      return
+      return;
     }
-    return "task-completed"
+    return 'task-completed';
   }
 
   private refreshTodos() {

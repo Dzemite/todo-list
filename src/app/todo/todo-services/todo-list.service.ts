@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
-import {Http, Response} from "@angular/http";
-import {Observable} from "rxjs";
-import {Todo} from "../todo-list/todo";
-import {AppSettings} from "../../app.settings";
+import {Injectable} from '@angular/core';
+import {Http, Response} from '@angular/http';
+import {Observable} from 'rxjs';
+import {Todo} from '../todo-list/todo';
+import {AppSettings} from '../../app.settings';
 
 @Injectable()
 export class TodoListService {
@@ -14,7 +14,7 @@ export class TodoListService {
   }
 
   public getTodos(categoryId: string): Observable<Todo[]> {
-    let _url: string = this.url + '?q=' + JSON.stringify({categoryID: categoryId}) + '&' + this.key;
+    const _url: string = this.url + '?q=' + JSON.stringify({categoryID: categoryId}) + '&' + this.key;
 
     return this.http.get(_url)
       .map(this.extractToDos)
@@ -27,12 +27,12 @@ export class TodoListService {
   }
 
   public deleteTodo(todoId: any): Observable<Todo> {
-    return this.http.delete(this.url + "/" + todoId.$oid + '?' + this.key, todoId)
+    return this.http.delete(this.url + '/' + todoId.$oid + '?' + this.key, todoId)
       .catch(this.handleError);
   }
 
   private deleteTodos(todos: Todo[]) {
-    for (let todo of todos) {
+    for (const todo of todos) {
       this.deleteTodo(todo._id)
         .subscribe(
           () => console.log('Deleting completed'),
@@ -50,13 +50,13 @@ export class TodoListService {
   }
 
   public editTodo(todo: Todo): Observable<Todo> {
-    return this.http.put(this.url + "/" + todo._id["$oid"] + '?' + this.key, todo)
+    return this.http.put(this.url + '/' + todo._id['$oid'] + '?' + this.key, todo)
       .catch(this.handleError);
   }
 
   private extractToDos(response: Response) {
-    let res = response.json();
-    let todos: Todo[] = [];
+    const res = response.json();
+    const todos: Todo[] = [];
     for (let i = 0; i < res.length; i++) {
       todos.push(new Todo(res[i]._id, res[i].name, res[i].completed, res[i].categoryID));
     }
@@ -64,11 +64,11 @@ export class TodoListService {
   }
 
   private handleError(error: any, cought: Observable<any>): any {
-    let message = "";
+    let message = '';
 
     if (error instanceof Response) {
-      let errorData = error.json().error || JSON.stringify(error.json());
-      message = `${error.status} - ${error.statusText || ''} ${errorData}`
+      const errorData = error.json().error || JSON.stringify(error.json());
+      message = `${error.status} - ${error.statusText || ''} ${errorData}`;
     } else {
       message = error.message ? error.message : error.toString();
     }

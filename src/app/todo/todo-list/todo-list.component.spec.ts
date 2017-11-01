@@ -1,13 +1,13 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { NO_ERRORS_SCHEMA } from "@angular/core";
-import { Router, ActivatedRoute } from "@angular/router";
-import { HttpModule } from "@angular/http";
-import { Observable } from "rxjs";
-import { Todo } from "./todo";
-import { TodoListComponent } from "./todo-list.component";
-import { TodoListService } from "../todo-services/todo-list.service";
-import { RouterStub } from "../../../testing-helpers/router-stubs";
-import { FormBuilder } from "@angular/forms";
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+import { HttpModule } from '@angular/http';
+import { Observable } from 'rxjs';
+import { Todo } from './todo';
+import { TodoListComponent } from './todo-list.component';
+import { TodoListService } from '../todo-services/todo-list.service';
+import { RouterStub } from '../../../testing-helpers/router-stubs';
+import { FormBuilder } from '@angular/forms';
 
 
 describe('TodoListComponent', () => {
@@ -83,7 +83,7 @@ describe('TodoListComponent', () => {
   it('Should change todo status', () => {
     fixture.whenStable().then(() => {
       fixture.detectChanges();
-      let currentStatus: boolean = component.todos[0].completed;
+      const currentStatus: boolean = component.todos[0].completed;
       component.changeTodoCompleteField(component.todos[0]._id);
 
       expect(component.todos[0].completed).toBe(!currentStatus);

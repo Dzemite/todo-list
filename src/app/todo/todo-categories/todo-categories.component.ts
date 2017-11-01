@@ -1,14 +1,14 @@
-import {Component, OnInit} from "@angular/core";
-import {CategoriesService} from "../todo-services/categories.service";
-import {Category} from "./category";
-import {Router} from "@angular/router";
-import {TodoListService} from "../todo-services/todo-list.service";
+import {Component, OnInit} from '@angular/core';
+import {CategoriesService} from '../todo-services/categories.service';
+import {Category} from './category';
+import {Router} from '@angular/router';
+import {TodoListService} from '../todo-services/todo-list.service';
 
 @Component({
   moduleId: module.id,
-  selector: "todo-categories",
-  templateUrl: "todo-categories.component.html",
-  styleUrls: ["todo-categories.component.css"]
+  selector: 'todo-categories',
+  templateUrl: 'todo-categories.component.html',
+  styleUrls: ['todo-categories.component.css']
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[];
@@ -33,7 +33,7 @@ export class CategoriesComponent implements OnInit {
 
   addNewCategory(newCategory: string) {
     if (!newCategory) return;
-    var category: Category = new Category(null, newCategory);
+    const category: Category = new Category(null, newCategory);
     this.service.addCategory(category)
       .subscribe(
         () => this.refreshCategories(),
@@ -42,7 +42,7 @@ export class CategoriesComponent implements OnInit {
   }
 
   editCategory(category: Category) {
-    let newName = prompt('Put new name of this category.', category.name);
+    const newName = prompt('Put new name of this category.', category.name);
 
     if (newName) {
       category.name = newName;
@@ -50,13 +50,13 @@ export class CategoriesComponent implements OnInit {
         .subscribe(
           () => this.refreshCategories(),
           error => this.errorMessage = error
-        )
+        );
     }
   }
 
   deleteCategory(category: Category) {
 
-    let _delete = () => {
+    const _delete = () => {
       this.service.deleteCategory(category._id)
         .subscribe(
         () => {
@@ -69,11 +69,11 @@ export class CategoriesComponent implements OnInit {
       this.todoService.deleteTodosWithCategoryID(category._id);
     };
 
-    confirm("Вы точно хотите удалить категорию " + category.name + "?") ? _delete() : null;
+    confirm('Вы точно хотите удалить категорию ' + category.name + '?') ? _delete() : null;
   }
 
 
   onSelect(selected: Category) {
-    this.router.navigate(["/todo", selected._id["$oid"], {category: selected.name}]);
+    this.router.navigate(['/todo', selected._id['$oid'], {category: selected.name}]);
   }
 }

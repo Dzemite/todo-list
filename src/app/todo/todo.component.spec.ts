@@ -1,6 +1,6 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { TodoComponent } from "./todo.component";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+import { TodoComponent } from './todo.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('TodoComponent', () => {
 

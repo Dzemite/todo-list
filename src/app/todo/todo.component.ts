@@ -1,9 +1,9 @@
-import { Component } from "@angular/core";
+import { Component } from '@angular/core';
 
 @Component({
   moduleId: module.id,
-  templateUrl: "todo.component.html",
-  styleUrls: ["todo.component.css"]
+  templateUrl: 'todo.component.html',
+  styleUrls: ['todo.component.css']
 })
 export class TodoComponent {
 }

@@ -1,21 +1,21 @@
-import {NgModule} from "@angular/core";
-import {RouterModule} from "@angular/router";
-import {TodoComponent} from "./todo.component";
-import {TodoListComponent} from "./todo-list/todo-list.component";
+import {NgModule} from '@angular/core';
+import {RouterModule} from '@angular/router';
+import {TodoComponent} from './todo.component';
+import {TodoListComponent} from './todo-list/todo-list.component';
 
 @NgModule({
   imports: [RouterModule.forChild([
     {
-      path: "",
-      redirectTo: "/todo",
-      pathMatch: "full"
+      path: '',
+      redirectTo: '/todo',
+      pathMatch: 'full'
     },
     {
-      path: "todo",
+      path: 'todo',
       component: TodoComponent,
       children: [
         {
-          path: ":id",
+          path: ':id',
           component: TodoListComponent
         }
       ]
