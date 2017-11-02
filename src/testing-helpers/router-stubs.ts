@@ -1,3 +1,4 @@
+///<reference path="../../node_modules/@angular/core/src/metadata/directives.d.ts"/>
 import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { Component, Directive, Injectable, Input } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
@@ -57,5 +58,5 @@ export class RouterLinkStubDirective {
 }
 
 // tslint:disable-next-line:component-selector
-@Component({ selector: 'router-outlet', template: '' })
+@Component({ selector: 'router-outlet', template: ' ' })
 export class RouterOutletStubComponent { }

@@ -8,7 +8,7 @@ import {TodoListService} from '../todo-services/todo-list.service';
   moduleId: module.id,
   selector: 'todo-categories',
   templateUrl: 'todo-categories.component.html',
-  styleUrls: ['todo-categories.component.css']
+  styleUrls: ['todo-categories.component.less']
 })
 export class CategoriesComponent implements OnInit {
   categories: Category[];

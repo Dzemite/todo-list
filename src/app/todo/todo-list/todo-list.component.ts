@@ -9,7 +9,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
   selector: 'todo-list',
   templateUrl: 'todo-list.component.html',
   styleUrls: [
-    'todo-list.component.css',
+    'todo-list.component.less',
     '../../../../node_modules/bootstrap/dist/css/bootstrap.min.css'
   ]
 })

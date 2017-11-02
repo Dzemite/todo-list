@@ -19,7 +19,7 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.css",
+        "styles.less",
         "../node_modules/font-awesome/css/font-awesome.css"
       ],
       "scripts": [],
@@ -55,7 +55,8 @@
     }
   },
   "defaults": {
-    "styleExt": "css",
-    "component": {}
+    "styleExt": "sass",
+    "component": {
+    }
   }
 }
