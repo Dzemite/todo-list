@@ -54,24 +54,23 @@ export class CategoriesComponent implements OnInit {
     }
   }
 
-  deleteCategory(category: Category) {
 
-    const _delete = () => {
-      this.service.deleteCategory(category._id)
-        .subscribe(
+  deleteCategory(category: Category) {
+    confirm('Вы точно хотите удалить категорию ' + category.name + '?') ? this._deleteCategory(category) : null;
+  }
+
+  private _deleteCategory(category: Category) {
+    this.service.deleteCategory(category._id)
+      .subscribe(
         () => {
           this.refreshCategories();
           this.router.navigate(['/todo']);
         },
-          error => this.errorMessage = error
-        );
+        error => this.errorMessage = error
+      );
 
-      this.todoService.deleteTodosWithCategoryID(category._id);
-    };
-
-    confirm('Вы точно хотите удалить категорию ' + category.name + '?') ? _delete() : null;
+    this.todoService.deleteTodosWithCategoryID(category._id);
   }
-
 
   onSelect(selected: Category) {
     this.router.navigate(['/todo', selected._id['$oid'], {category: selected.name}]);

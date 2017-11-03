@@ -10,7 +10,7 @@ export class CategoriesService {
   private key = '?apiKey=' + AppSettings.API_KEY;
   private baseUrl = this.url + this.key;
 
-  constructor(private http: Http){}
+  constructor(private http: Http) {}
 
   public getCategories(): Observable<Category[]> {
     return this.http.get(this.url + this.key)
@@ -34,7 +34,7 @@ export class CategoriesService {
   }
 
   private extractCategories(response: Response) {
-    const res = response.json(); console.log('inApp response: ', JSON.stringify( response));
+    const res = response.json();
     const categories: Category[] = [];
     for (let i = 0; i < res.length; i++) {
       categories.push(new Category(res[i]._id, res[i].name));
