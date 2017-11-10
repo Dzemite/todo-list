@@ -1,6 +1,11 @@
-<h1 class="title">{{title}}</h1>
+<header>
+  <div class="title">
+    {{title}}
+  </div>
+</header>
+
 <nav>
-  <button (click)="goHome()"><fa name="home"></fa></button>
+  <button mat-raised-button (click)="goHome()"><fa name="home"></fa></button>
 </nav>
 
 <router-outlet></router-outlet>

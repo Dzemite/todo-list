@@ -1,7 +1,9 @@
 <h3>Categories</h3>
 
-<input type="text" #newCategory (keyup.enter)="addNewCategory(newCategory.value)">
-<button type="submit" (click)="addNewCategory(newCategory.value)"><fa name="plus"></fa></button>
+<mat-form-field >
+  <input matInput #newCategory (keyup.enter)="addNewCategory(newCategory.value)" placeholder="Add new category">
+</mat-form-field>
+
 <div class="categories">
   <div *ngFor="let category of categories">
     <div class="category">
@@ -13,4 +15,5 @@
     </div>
   </div>
 </div>
+
 <div *ngIf="errorMessage">{{errorMessage}}</div>

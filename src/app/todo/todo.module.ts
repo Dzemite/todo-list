@@ -8,10 +8,10 @@ import {MaterialModule} from '../material/material.module';
 import {TodoListComponent} from './todo-list/todo-list.component';
 import {CategoriesComponent} from './todo-categories/todo-categories.component';
 import {TodoComponent} from './todo.component';
-import {DialogOverviewExampleDialogComponent} from './dialogs/dialog-overview-example-dialog';
 
 import {CategoriesService} from './todo-services/categories.service';
 import {TodoListService} from './todo-services/todo-list.service';
+import {HttpClient} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -25,14 +25,14 @@ import {TodoListService} from './todo-services/todo-list.service';
   declarations: [
     TodoComponent,
     CategoriesComponent,
-    TodoListComponent,
-    DialogOverviewExampleDialogComponent
+    TodoListComponent
   ],
   providers: [
     CategoriesService,
-    TodoListService
+    TodoListService,
+    HttpClient
   ],
-  entryComponents: [DialogOverviewExampleDialogComponent]
+  entryComponents: []
 })
 export class TodoModule {
 }

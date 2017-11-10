@@ -22,8 +22,7 @@ export class TodoListComponent implements OnInit {
   todoForm: FormGroup;
 
   constructor(private activatedRoute: ActivatedRoute,
-              private service: TodoListService,
-              private fb: FormBuilder) {  }
+              private service: TodoListService) {  }
 
   ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
@@ -59,7 +58,7 @@ export class TodoListComponent implements OnInit {
   }
 
   addNewTodo(newTodo: string) {
-    if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) return;
+    if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) { return; }
 
     const todo: Todo = new Todo(null, newTodo, false, this.categoryId);
     this.service.addTodo(todo)

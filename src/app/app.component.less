@@ -1,17 +1,21 @@
 @headBackground: #4000ff;
+@headerColor: #FFFFFF;
 
 :host {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-h1.title {
-  display: block;
-  text-align: center;
-  margin-top: auto;
-  margin-bottom: auto;
+header {
+  width: 100%;
   height: 100px;
-  background: @headBackground;
-  color: #FFFFFF;
+  background: @headBackground url(../resources/logo.png) no-repeat 10px 50%;
+  color: @headerColor;
+}
+
+.title {
+  font-size: 36px;
+  padding-top: 25px;
+  text-align: center;
 }
 
 nav {

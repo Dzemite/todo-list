@@ -3,6 +3,7 @@ import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Category} from '../todo-categories/category';
 import {AppSettings} from '../../app.settings';
+import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
 
 @Injectable()
 export class CategoriesService {
@@ -10,50 +11,43 @@ export class CategoriesService {
   private key = '?apiKey=' + AppSettings.API_KEY;
   private baseUrl = this.url + this.key;
 
-  constructor(private http: Http) {}
+  constructor(private httpClient: HttpClient) {}
 
-  public getCategories(): Observable<Category[]> {
-    return this.http.get(this.url + this.key)
+  public getCategories(): Observable<{} | Category[]> {
+    return this.httpClient.get(this.url + this.key)
       .map(this.extractCategories)
       .catch(this.handleError);
   }
 
-  public addCategory(category: Category): Observable<Category> {
-    return this.http.post(this.baseUrl, category)
+  public addCategory(category: Category): Observable<{} | Category> {
+    return this.httpClient.post(this.baseUrl, category)
       .catch(this.handleError);
   }
 
-  public deleteCategory(categoryId: any): Observable<Category> {
-    return this.http.delete(this.url + '/' + categoryId.$oid + this.key, categoryId)
+  public deleteCategory(categoryId: any): Observable<{} | Category> {
+    return this.httpClient.delete(this.url + '/' + categoryId.$oid + this.key, categoryId)
       .catch(this.handleError);
   }
 
-  public editCategory(category: Category): Observable<Category> {
-    return this.http.put(this.url + '/' + category._id['$oid'] + this.key, category)
+  public editCategory(category: Category): Observable<{} |Category> {
+    return this.httpClient.put(this.url + '/' + category._id['$oid'] + this.key, category)
       .catch(this.handleError);
   }
 
-  private extractCategories(response: Response) {
-    const res = response.json();
-    const categories: Category[] = [];
-    for (let i = 0; i < res.length; i++) {
-      categories.push(new Category(res[i]._id, res[i].name));
-    }
-    return categories;
+  private extractCategories(response: HttpResponse<Category[]>) {
+    return response;
   }
 
-  private handleError(error: any, cought: Observable<any>): any {
-    let message = '';
+  private handleError(err: HttpErrorResponse): any {
+    let errorMessage: string;
 
-    if (error instanceof Response) {
-      const errorData = error.json().error || JSON.stringify(error.json());
-      message = `${error.status} - ${error.statusText || ''} ${errorData}`;
+    if (err.error instanceof Error) {
+      errorMessage = `An error occurred: ${err.error.message}`;
     } else {
-      message = error.message ? error.message : error.toString();
+      errorMessage = `Backend return code ${err.status}, body was: ${err.error.body}`;
     }
 
-    console.error(message);
-
-    return Observable.throw(message);
+    console.log(errorMessage);
+    return Observable.throw(errorMessage);
   }
 }

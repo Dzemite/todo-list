@@ -14,6 +14,7 @@ import {TodoModule} from './todo/todo.module';
 
 import {RouterLinkStubDirective, RouterOutletStubComponent} from '../testing-helpers/router-stubs';
 import {MaterialModule} from './material/material.module';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import {MaterialModule} from './material/material.module';
     TodoModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
