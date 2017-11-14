@@ -1,12 +1,16 @@
-<div class="flex-container">
+<mat-sidenav-container class="container">
 
-  <div class="desk">
-    <div class="content">
-      <todo-categories></todo-categories>
-    </div>
-  </div>
+  <mat-sidenav #sidenav class="sidenav">
 
-  <div class="to-dos">
+    <todo-categories></todo-categories>
+
+  </mat-sidenav>
+
+  <button type="button" mat-button (click)="sidenav.open()" id="arrow-btn">
+    Categories<i class="material-icons">arrow_forward</i>
+  </button>
+
+  <div class="sidenav-content">
     <router-outlet></router-outlet>
   </div>
-</div>
+</mat-sidenav-container>

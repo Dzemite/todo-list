@@ -1,11 +1,16 @@
-<header>
-  <div class="title">
-    {{title}}
-  </div>
-</header>
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <a class="mat-button" (click)="goHome()">
+      <span class="title">
+        {{title}}
+      </span>
+    </a>
+  </mat-toolbar-row>
+  <mat-toolbar-row>
+    <a class="mat-button home-btn" (click)="goHome()"><i class="material-icons">home</i></a>
+  </mat-toolbar-row>
+</mat-toolbar>
 
-<nav>
-  <button mat-raised-button (click)="goHome()"><fa name="home"></fa></button>
-</nav>
-
-<router-outlet></router-outlet>
+<div class="content">
+  <router-outlet></router-outlet>
+</div>

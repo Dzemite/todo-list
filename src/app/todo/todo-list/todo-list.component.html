@@ -18,23 +18,12 @@
       {{todo.name}}
     </i>
     <div class="buttons">
-      <button (click)="editTodo(todo)">
-        <fa name="pencil-square-o"></fa>
+      <button mat-mini-fab (click)="editTodo(todo)">
+        <i class="material-icons">mode_edit</i>
       </button>
-      <button (click)="deleteTodo(todo)">
-        <fa name="trash"></fa>
+      <button mat-mini-fab (click)="deleteTodo(todo)">
+        <i class="material-icons">delete</i>
       </button>
     </div>
   </div>
 </div>
-
-<button mat-button>         <fa name="pencil-square-o"></fa></button>
-<button mat-raised-button>  <fa name="pencil-square-o"></fa></button>
-<button mat-icon-button>    <fa name="pencil-square-o"></fa></button>
-<button mat-fab>            <fa name="pencil-square-o"></fa></button>
-<button mat-mini-fab>       <fa name="pencil-square-o"></fa></button>
-<button mat-button>         <fa name="trash"></fa></button>
-<button mat-raised-button>  <fa name="trash"></fa></button>
-<button mat-icon-button>    <fa name="trash"></fa></button>
-<button mat-fab>            <fa name="trash"></fa></button>
-<button mat-mini-fab>       <fa name="trash"></fa></button>

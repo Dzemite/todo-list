@@ -11,7 +11,7 @@ import {TodoListService} from '../todo-services/todo-list.service';
   styleUrls: ['todo-categories.component.less']
 })
 export class CategoriesComponent implements OnInit {
-  categories: Category[];
+  categories: {} | Category[];
   errorMessage: string;
 
   constructor(private router: Router,

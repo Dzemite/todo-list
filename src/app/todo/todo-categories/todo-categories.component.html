@@ -9,8 +9,8 @@
     <div class="category">
       <a class="category-name" (click)="onSelect(category)">{{category.name}}</a>
       <div class="buttons">
-        <button (click)="editCategory(category)"><fa name="pencil-square-o"></fa></button>
-        <button (click)="deleteCategory(category)"><fa name="trash"></fa></button>
+        <button mat-icon-button (click)="editCategory(category)"><i class="material-icons">mode_edit</i></button>
+        <button mat-icon-button (click)="deleteCategory(category)"><i class="material-icons">delete</i></button>
       </div>
     </div>
   </div>

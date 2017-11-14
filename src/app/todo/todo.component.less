@@ -1,24 +1,19 @@
-.flex-container {
+.container {
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+.sidenav-content {
   display: flex;
-  justify-content: flex-start;
-  align-content: flex-start;
+  height: 100%;
+  justify-content: center;
 }
 
-div.desk {
-  flex-basis: 300px;
-  flex-grow: 0;
-  background-color: #9ca1a3;
-  align-self: auto;
-  height: 500px;
+.sidenav {
+  padding: 20px;
 }
 
-div.content {
-  margin-left: 25px;
-  margin-top: 25px;
-}
-
-.to-dos {
-  flex-basis: 100px;
-  flex-grow: 3;
-  margin-left: 50px;
+#arrow-btn {
+  position: absolute;
 }
