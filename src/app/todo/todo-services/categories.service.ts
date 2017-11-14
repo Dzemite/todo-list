@@ -1,9 +1,8 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
 import {Observable} from 'rxjs/Observable';
 import {Category} from '../todo-categories/category';
 import {AppSettings} from '../../app.settings';
-import {HttpClient, HttpErrorResponse, HttpResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
 @Injectable()
 export class CategoriesService {

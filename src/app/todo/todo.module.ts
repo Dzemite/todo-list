@@ -12,6 +12,7 @@ import {TodoComponent} from './todo.component';
 import {CategoriesService} from './todo-services/categories.service';
 import {TodoListService} from './todo-services/todo-list.service';
 import {HttpClient} from '@angular/common/http';
+import {TemplateDeleteDialogComponent} from '../dialogs/template-delete-dialog/template-delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -32,7 +33,7 @@ import {HttpClient} from '@angular/common/http';
     TodoListService,
     HttpClient
   ],
-  entryComponents: []
+  entryComponents: [TemplateDeleteDialogComponent]
 })
 export class TodoModule {
 }

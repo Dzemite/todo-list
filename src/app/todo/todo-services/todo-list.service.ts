@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Http, Response} from '@angular/http';
-import {Observable} from 'rxjs';
+import {Observable} from 'rxjs/Observable';
 import {Todo} from '../todo-list/todo';
 import {AppSettings} from '../../app.settings';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';

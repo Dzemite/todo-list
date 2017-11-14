@@ -1,0 +1,12 @@
+<div class="flex-container">
+  <mat-toolbar>
+    <h1 mat-dialog-title>Delete {{data.type}}</h1>
+  </mat-toolbar>
+  <div mat-dialog-content>
+    <p>Do you really want to delete the {{data.name}} {{data.type}}?</p>
+  </div>
+  <div mat-dialog-actions class="dialog-btns">
+    <button mat-button [mat-dialog-close]="true" tabindex="2">Yes</button>
+    <button mat-button (click)="onNoClick()" tabindex="-1">No</button>
+  </div>
+</div>

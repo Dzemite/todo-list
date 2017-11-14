@@ -3,6 +3,9 @@ import {CategoriesService} from '../todo-services/categories.service';
 import {Category} from './category';
 import {Router} from '@angular/router';
 import {TodoListService} from '../todo-services/todo-list.service';
+import {MatDialog} from '@angular/material';
+import {TemplateDeleteDialogComponent} from '../../dialogs/template-delete-dialog/template-delete-dialog.component';
+import {AppSettings} from '../../app.settings';
 
 @Component({
   moduleId: module.id,
@@ -16,7 +19,8 @@ export class CategoriesComponent implements OnInit {
 
   constructor(private router: Router,
               private service: CategoriesService,
-              private todoService: TodoListService) {
+              private todoService: TodoListService,
+              private dialog: MatDialog) {
   }
 
   ngOnInit() {
@@ -55,8 +59,20 @@ export class CategoriesComponent implements OnInit {
   }
 
 
-  deleteCategory(category: Category) {
-    confirm('Вы точно хотите удалить категорию ' + category.name + '?') ? this._deleteCategory(category) : null;
+  deleteCategory(category: Category): void {
+    const dialogRef = this.dialog.open(TemplateDeleteDialogComponent, {
+      width: AppSettings.DELETE_DIALOG_WIDTH,
+      data: {
+        name: category.name,
+        type: 'category'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this._deleteCategory(category);
+      }
+    });
   }
 
   private _deleteCategory(category: Category) {

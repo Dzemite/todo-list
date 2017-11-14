@@ -15,13 +15,15 @@ import {TodoModule} from './todo/todo.module';
 import {RouterLinkStubDirective, RouterOutletStubComponent} from '../testing-helpers/router-stubs';
 import {MaterialModule} from './material/material.module';
 import {HttpClientModule} from '@angular/common/http';
+import { TemplateDeleteDialogComponent } from './dialogs/template-delete-dialog/template-delete-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomePageComponent,
     RouterLinkStubDirective,
-    RouterOutletStubComponent
+    RouterOutletStubComponent,
+    TemplateDeleteDialogComponent
   ],
   imports: [
     BrowserModule,
