@@ -1,0 +1,16 @@
+<form [formGroup]="editTodoForm" novalidate>
+  <div class="form-group">
+    <mat-toolbar mat-dialog-title>
+      <h1>Edit task</h1>
+    </mat-toolbar>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="todoForChange.name" formControlName="name" placeholder="Editing this task">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+      <button mat-button (click)="onSaveClick()">Save</button>
+      <button mat-button (click)="onCloseClick()">Cancel</button>
+    </div>
+  </div>
+</form>

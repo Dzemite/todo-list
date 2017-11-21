@@ -6,11 +6,13 @@
 
   </mat-sidenav>
 
-  <button type="button" mat-button (click)="sidenav.open()" id="arrow-btn">
-    Categories<i class="material-icons">arrow_forward</i>
-  </button>
+  <div class="flex-container">
+    <button type="button" mat-button (click)="sidenav.open()">
+      Categories<i class="material-icons">arrow_forward</i>
+    </button>
 
-  <div class="sidenav-content">
-    <router-outlet></router-outlet>
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
   </div>
 </mat-sidenav-container>

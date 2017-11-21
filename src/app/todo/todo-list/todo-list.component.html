@@ -1,6 +1,7 @@
 <h3>{{categoryName}}</h3>
 
-<form class="form-group" [class]="inputClasses()" [formGroup]="todoForm" (ngSubmit)="addNewTodo(newTodo.value)">
+<form class="form-group" [formGroup]="todoForm"
+      (ngSubmit)="addNewTodo(newTodo.value)">
   <mat-form-field>
     <input matInput type="text"
            formControlName="todo" #newTodo placeholder="Add new task">
@@ -12,18 +13,23 @@
 
 <div *ngFor="let todo of todos; let i = index">
   <div class="todo-content form-group">
-    <input type="checkbox" (click)="changeTodoCompleteField(i)" (blur)="updateTodo(todo)"
-           [checked]="isCompleted(todo)"/>
-    <i [class]="isCompleted(todo)">
-      {{todo.name}}
-    </i>
-    <div class="buttons">
-      <button mat-mini-fab (click)="editTodo(todo)">
-        <i class="material-icons">mode_edit</i>
-      </button>
-      <button mat-mini-fab (click)="deleteTodo(todo)">
-        <i class="material-icons">delete</i>
-      </button>
-    </div>
+    <!--<input type="checkbox" (click)="changeTodoCompleteField(i)" (blur)="updateTodo(todo)"-->
+           <!--[checked]="isCompleted(todo)"/>-->
+    <mat-toolbar>
+      <i [class]="setClassTaskCompleted(todo)">
+        {{todo.name}}
+      </i>
+      <div class="buttons">
+        <button mat-mini-fab (click)="changeTodoCompleteField(i)">
+          <i class="material-icons" [style.color]="isCompleted(todo) ? 'lawngreen' : ''">offline_pin</i>
+        </button>
+        <button mat-mini-fab (click)="editTodo(todo)">
+          <i class="material-icons">mode_edit</i>
+        </button>
+        <button mat-mini-fab (click)="deleteTodo(todo)">
+          <i class="material-icons">delete</i>
+        </button>
+      </div>
+    </mat-toolbar>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CategoriesService} from '../todo-services/categories.service';
 import {Category} from './category';
 import {Router} from '@angular/router';
@@ -16,6 +16,8 @@ import {AppSettings} from '../../app.settings';
 export class CategoriesComponent implements OnInit {
   categories: {} | Category[];
   errorMessage: string;
+
+  @ViewChild('newCategory') newCategory: ElementRef;
 
   constructor(private router: Router,
               private service: CategoriesService,
@@ -36,13 +38,15 @@ export class CategoriesComponent implements OnInit {
   }
 
   addNewCategory(newCategory: string) {
-    if (!newCategory) return;
+    if (!newCategory) { return; }
+
     const category: Category = new Category(null, newCategory);
     this.service.addCategory(category)
       .subscribe(
         () => this.refreshCategories(),
         error => this.errorMessage = error
       );
+    this.newCategory.nativeElement.value = '';
   }
 
   editCategory(category: Category) {

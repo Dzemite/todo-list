@@ -3,7 +3,6 @@ import './rx-js.operators';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpModule} from '@angular/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {AppComponent} from './app.component';
@@ -16,6 +15,8 @@ import {RouterLinkStubDirective, RouterOutletStubComponent} from '../testing-hel
 import {MaterialModule} from './material/material.module';
 import {HttpClientModule} from '@angular/common/http';
 import { TemplateDeleteDialogComponent } from './dialogs/template-delete-dialog/template-delete-dialog.component';
+import { TemplateEditTodoDialogComponent } from './dialogs/template-edit-todo-dialog/template-edit-todo-dialog.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -23,17 +24,19 @@ import { TemplateDeleteDialogComponent } from './dialogs/template-delete-dialog/
     HomePageComponent,
     RouterLinkStubDirective,
     RouterOutletStubComponent,
-    TemplateDeleteDialogComponent
+    TemplateDeleteDialogComponent,
+    TemplateEditTodoDialogComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpModule,
     TodoModule,
     AngularFontAwesomeModule,
     BrowserAnimationsModule,
     MaterialModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

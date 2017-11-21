@@ -1,8 +1,12 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {TodoListService} from '../todo-services/todo-list.service';
 import {Todo} from './todo';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
+import {TemplateDeleteDialogComponent} from '../../dialogs/template-delete-dialog/template-delete-dialog.component';
+import {MatDialog} from '@angular/material';
+import {AppSettings} from '../../app.settings';
+import {TemplateEditTodoDialogComponent} from "../../dialogs/template-edit-todo-dialog/template-edit-todo-dialog.component";
 
 @Component({
   moduleId: module.id,
@@ -21,8 +25,13 @@ export class TodoListComponent implements OnInit {
   categoryName: string;
   todoForm: FormGroup;
 
+  private completed = 'task-completed';
+
+  @ViewChild('newTodo') newTodo: ElementRef;
+
   constructor(private activatedRoute: ActivatedRoute,
-              private service: TodoListService) {  }
+              private service: TodoListService,
+              private dialog: MatDialog) {  }
 
   ngOnInit() {
     this.activatedRoute.params.forEach((params: Params) => {
@@ -43,20 +52,6 @@ export class TodoListComponent implements OnInit {
     this.todos[todoId].completed = !this.todos[todoId].completed;
   }
 
-  updateTodo(todo: Todo) {
-    this.service.editTodo(todo)
-      .subscribe(
-        () => {},
-        error => this.errorMessage = error
-      );
-  }
-
-  inputClasses() {
-    if (this.todoForm.get('todo').hasError('maxlength')) {
-      return 'has-error';
-    }
-  }
-
   addNewTodo(newTodo: string) {
     if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) { return; }
 
@@ -66,36 +61,68 @@ export class TodoListComponent implements OnInit {
         () => this.refreshTodos(),
         error => this.errorMessage = error
       );
+    this.newTodo.nativeElement.value = '';
   }
 
   editTodo(todo: Todo) {
-    const newTodo = prompt('Put new todo.', todo.name);
 
-    if (newTodo) {
-      todo.name = newTodo;
-      this.service.editTodo(todo)
+    const dialogRef = this.dialog.open(TemplateEditTodoDialogComponent, {
+      data: {
+        todo: todo
+      },
+      width: AppSettings.EDIT_DIALOG_WIDTH
+    });
+
+    dialogRef.afterClosed().subscribe( res => {
+      this.service.editTodo(res)
         .subscribe(
           () => this.refreshTodos(),
           error => this.errorMessage = error
         );
-    }
+    });
+
+    // if (false) {
+    //   todo.name = 'asd';//newTodo;
+    //   this.service.editTodo(todo)
+    //     .subscribe(
+    //       () => this.refreshTodos(),
+    //       error => this.errorMessage = error
+    //     );
+    // }
   }
 
   deleteTodo(todo: Todo) {
-    confirm('Вы точно хотите удалить задачу ' + todo.name + '?') ?
-      this.service.deleteTodo(todo._id)
-        .subscribe(
-          () => this.refreshTodos(),
-          error => this.errorMessage = error
-        )
-      : null;
+    const dialogRef = this.dialog.open(TemplateDeleteDialogComponent, {
+      width: AppSettings.DELETE_DIALOG_WIDTH,
+      data: {
+        name: todo.name,
+        type: 'task'
+      }
+    });
+
+    dialogRef.afterClosed().subscribe(
+      result => {
+        if (result) { this._deleteTodo(todo); }
+    });
   }
 
-  isCompleted(todo: Todo): string {
+  setClassTaskCompleted(todo: Todo): string {
+    return this.isCompleted(todo) ? this.completed : '';
+  }
+
+  private _deleteTodo(todo: Todo) {
+    this.service.deleteTodo(todo._id)
+      .subscribe(
+        () => this.refreshTodos(),
+        error => this.errorMessage = error
+      );
+  }
+
+  private isCompleted(todo: Todo): boolean {
     if (!todo.completed) {
       return;
     }
-    return 'task-completed';
+    return true;
   }
 
   private refreshTodos() {
