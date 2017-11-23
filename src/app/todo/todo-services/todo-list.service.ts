@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Todo} from '../todo-list/todo';
+import {Todo} from '../../entities/todo';
 import {AppSettings} from '../../app.settings';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 
@@ -27,7 +27,7 @@ export class TodoListService {
   }
 
   public deleteTodo(todoId: any): Observable<Todo> {
-    return this.httpClient.delete(this.url + '/' + todoId.$oid + '?' + this.key, todoId)
+    return this.httpClient.delete(this.url + '/' + todoId.$oid + '?' + this.key)
       .catch(this.handleError);
   }
 

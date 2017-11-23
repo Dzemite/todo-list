@@ -1,6 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CategoriesService} from '../todo-services/categories.service';
-import {Category} from './category';
+import {Category} from '../../entities/category';
 import {Router} from '@angular/router';
 import {TodoListService} from '../todo-services/todo-list.service';
 import {MatDialog} from '@angular/material';

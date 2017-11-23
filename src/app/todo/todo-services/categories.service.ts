@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs/Observable';
-import {Category} from '../todo-categories/category';
+import {Category} from '../../entities/category';
 import {AppSettings} from '../../app.settings';
 import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
 

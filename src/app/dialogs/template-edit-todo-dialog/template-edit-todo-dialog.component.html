@@ -5,12 +5,13 @@
     </mat-toolbar>
     <div mat-dialog-content>
       <mat-form-field>
-        <input matInput type="text" [(ngModel)]="todoForChange.name" formControlName="name" placeholder="Editing this task">
+        <input matInput type="text" [(ngModel)]="todoForChange.name" formControlName="name"
+               placeholder="Editing this task">
       </mat-form-field>
     </div>
     <div mat-dialog-actions class="buttons">
-      <button mat-button (click)="onSaveClick()">Save</button>
-      <button mat-button (click)="onCloseClick()">Cancel</button>
+      <button mat-button [mat-dialog-close]="onSaveClick()" tabindex="2">Save</button>
+      <button mat-button (click)="onCloseClick()" tabindex="-1">Cancel</button>
     </div>
   </div>
 </form>

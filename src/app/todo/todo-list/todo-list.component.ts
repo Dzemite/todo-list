@@ -1,7 +1,7 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute, Params} from '@angular/router';
 import {TodoListService} from '../todo-services/todo-list.service';
-import {Todo} from './todo';
+import {Todo} from '../../entities/todo';
 import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {TemplateDeleteDialogComponent} from '../../dialogs/template-delete-dialog/template-delete-dialog.component';
 import {MatDialog} from '@angular/material';
@@ -50,6 +50,12 @@ export class TodoListComponent implements OnInit {
 
   changeTodoCompleteField(todoId: any) {
     this.todos[todoId].completed = !this.todos[todoId].completed;
+
+    this.service.editTodo(this.todos[todoId])
+      .subscribe(
+        () => {},
+        error => this.errorMessage = error
+      );
   }
 
   addNewTodo(newTodo: string) {
@@ -65,7 +71,6 @@ export class TodoListComponent implements OnInit {
   }
 
   editTodo(todo: Todo) {
-
     const dialogRef = this.dialog.open(TemplateEditTodoDialogComponent, {
       data: {
         todo: todo
@@ -73,22 +78,13 @@ export class TodoListComponent implements OnInit {
       width: AppSettings.EDIT_DIALOG_WIDTH
     });
 
-    dialogRef.afterClosed().subscribe( res => {
+    dialogRef.afterClosed().subscribe( res => { console.log(`changed todo: ${JSON.stringify(res)}`);
       this.service.editTodo(res)
         .subscribe(
           () => this.refreshTodos(),
           error => this.errorMessage = error
         );
     });
-
-    // if (false) {
-    //   todo.name = 'asd';//newTodo;
-    //   this.service.editTodo(todo)
-    //     .subscribe(
-    //       () => this.refreshTodos(),
-    //       error => this.errorMessage = error
-    //     );
-    // }
   }
 
   deleteTodo(todo: Todo) {

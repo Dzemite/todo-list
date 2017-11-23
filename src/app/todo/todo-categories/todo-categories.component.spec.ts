@@ -8,7 +8,7 @@ import { CategoriesService } from '../todo-services/categories.service';
 import { HttpModule } from '@angular/http';
 import { TodoListService } from '../todo-services/todo-list.service';
 import { Observable } from 'rxjs';
-import { Category } from './category';
+import { Category } from '../../entities/category';
 
 
 describe('CategoriesComponent', () => {

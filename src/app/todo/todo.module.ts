@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {TodoRoutingModule} from './todo-routing.module';
 import {AngularFontAwesomeModule} from 'angular-font-awesome';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
-import {MaterialModule} from '../material/material.module';
+import {MaterialModule} from '../../material/material.module';
 
 import {TodoListComponent} from './todo-list/todo-list.component';
 import {CategoriesComponent} from './todo-categories/todo-categories.component';

@@ -1,7 +1,7 @@
-import {Component, Inject, OnInit, ViewEncapsulation} from '@angular/core';
+import {Component, ElementRef, Inject, OnInit, ViewChild, ViewEncapsulation} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material';
-import {Todo} from '../../todo/todo-list/todo';
-import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {Todo} from '../../entities/todo';
+import {FormControl, FormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-template-edit-dialog',
@@ -11,7 +11,7 @@ import {FormControl, FormGroup, FormsModule, ReactiveFormsModule} from '@angular
 })
 export class TemplateEditTodoDialogComponent implements OnInit {
 
-  protected todoForChange: Todo;
+  private todoForChange: Todo;
 
   public editTodoForm = new FormGroup({
     name: new FormControl()
@@ -21,14 +21,14 @@ export class TemplateEditTodoDialogComponent implements OnInit {
               @Inject(MAT_DIALOG_DATA) private data: any) { }
 
   ngOnInit() {
-    this.todoForChange = this.data.todo;
+    this.todoForChange = Object.assign({}, this.data.todo);
   }
 
   onCloseClick(): void {
     this.dialogRef.close();
   }
 
-  onSaveClick(): any {
+  onSaveClick(): Todo {
     return this.todoForChange;
   }
 }
