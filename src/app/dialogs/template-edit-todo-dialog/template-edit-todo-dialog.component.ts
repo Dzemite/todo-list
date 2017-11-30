@@ -11,7 +11,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 })
 export class TemplateEditTodoDialogComponent implements OnInit {
 
-  private todoForChange: Todo;
+  public todoForChange: Todo;
 
   public editTodoForm = new FormGroup({
     name: new FormControl()

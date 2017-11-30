@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpResponse} from '@angular/common/http';
-import {sha1} from '@angular/compiler/src/i18n/digest';
-import {AppSettings} from '../app.settings';
-import {User} from '../entities/user';
+import { HttpClient, HttpResponse } from '@angular/common/http';
+import { AppSettings } from '../app.settings';
+import { User } from '../entities/user';
 
 @Injectable()
 export class AuthenticationService {
@@ -12,18 +11,19 @@ export class AuthenticationService {
 
   constructor(private httpClient: HttpClient) { }
 
-  login(username: string, password: string) {
+  // TODO: need to encrypt password
+  public login(username: string, password: string) {
     return this.httpClient.get(this.url + '?q=' + JSON.stringify({username: username}) + '&' + this.key)
       .map((response: HttpResponse<User>) => {
-          const user = response.body;
-          if (response && user.password === sha1(password)) {
-            localStorage.setItem('currentUser', JSON.stringify(user));
+          const user: User = response[0];
+          if (user && user.password === password) {
+            localStorage.setItem('currentUser', JSON.stringify(response));
           }
         }
       );
   }
 
-  logout() {
+  public logout() {
     localStorage.removeItem('currentUser');
   }
 

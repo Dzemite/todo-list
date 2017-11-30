@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpResponse} from '@angular/common/http';
-import {AppSettings} from '../app.settings';
-import {Observable} from 'rxjs/Observable';
-import {User} from '../entities/index';
+import { HttpClient, HttpErrorResponse, HttpResponse } from '@angular/common/http';
+import { AppSettings } from '../app.settings';
+import { Observable } from 'rxjs/Observable';
+import { User } from '../entities/user';
 
 @Injectable()
 export class UsersService {
@@ -13,28 +13,28 @@ export class UsersService {
 
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<User[]> {
+  public getAll(): Observable<User[]> {
     return this.httpClient.get(this.url + '?' + this.key)
       .map(this.extractUsers)
       .catch(this.handleError);
   }
 
-  getByLogin(login: string): Observable<User> {
+  public getByLogin(login: string): Observable<User> {
     return this.httpClient.get(this.url + '?q=' + JSON.stringify({login: login}) + '&' + this.key)
       .catch(this.handleError);
   }
 
-  create(user: User): Observable<User> {
+  public create(user: User): Observable<User> {
     return this.httpClient.post(this.baseUrl, user)
       .catch(this.handleError);
   }
 
-  update(user: User): Observable<User> {
+  public update(user: User): Observable<User> {
     return this.httpClient.put(this.url + '/' + user._id['$oid'] + '?' + this.key, user)
       ._catch(this.handleError);
   }
 
-  delete(userId: any): Observable<User> {
+  public delete(userId: any): Observable<User> {
     return this.httpClient.delete(this.url + '/' + userId.$oid + '?' + this.key)
       .catch(this.handleError);
   }

@@ -23,7 +23,8 @@ export class RegistrationPageComponent implements OnInit {
   }
 
   register() {
-    this.loading = true;
+    this.loading = true; console.log(JSON.stringify(this.model));
+    this.model.role = '2';
     this.usersService.create(this.model)
       .subscribe(
         data => {
