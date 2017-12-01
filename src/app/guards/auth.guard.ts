@@ -9,7 +9,7 @@ export class AuthGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): boolean {
-    if (localStorage.getItem('curentUser')) {
+    if (localStorage.getItem('currentUser')) {
       return true;
     }
 

@@ -32,7 +32,7 @@ export class LoginPageComponent implements OnInit {
     this.loading = true;
     this.authenticationService.login(this.model.username, this.model.password)
       .subscribe(
-        data => {
+        data => { console.log('Registration successfully, redirect to ' + this.returnUrl);
           this.router.navigate([this.returnUrl]);
         },
         error => {
