@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -13,5 +13,21 @@ export class AppComponent {
 
   goHome() {
     this.router.navigate(['/home']);
+  }
+
+  isAuth() {
+    const state = this.router.routerState;
+
+    switch (state.snapshot.url) {
+      case '/login': {
+        return true;
+      }
+      case '/register': {
+        return true;
+      }
+      default: {
+        return false;
+      }
+    }
   }
 }
