@@ -1,0 +1,19 @@
+<form [formGroup]="editProfileForm" novalidate>
+  <div class="form-group">
+    <mat-toolbar mat-dialog-title>
+      <h1>Edit profile</h1>
+    </mat-toolbar>
+    <div mat-dialog-content>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="profileForChange.name" formControlName="name">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" [(ngModel)]="profileForChange.login" formControlName="login">
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions class="buttons">
+      <button mat-button [mat-dialog-close]="onSaveClick()" tabindex="2">Save</button>
+      <button mat-button (click)="onCloseClick()" tabindex="-1">Cancel</button>
+    </div>
+  </div>
+</form>
