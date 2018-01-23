@@ -23,6 +23,7 @@ import { AuthenticationService } from './app-services/index';
 import { AlertService } from './app-services/index';
 import { UsersService } from './app-services/index';
 import { AuthGuard } from './guards/auth.guard';
+import { TemplateEditProfileDialogComponent } from './dialogs/template-edit-profile-dialog/template-edit-profile-dialog.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { AuthGuard } from './guards/auth.guard';
     TemplateDeleteDialogComponent,
     TemplateEditTodoDialogComponent,
     LoginPageComponent,
-    RegistrationPageComponent
+    RegistrationPageComponent,
+    TemplateEditProfileDialogComponent
   ],
   imports: [
     BrowserModule,

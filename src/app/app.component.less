@@ -5,7 +5,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.content {
+.app-content {
   position: fixed;
   top: 64px;
   left: 0;
@@ -22,12 +22,25 @@ mat-toolbar {
   left: 0;
 }
 
+.profile {
+  justify-content: flex-end;
+}
+
 .title {
   font-weight: 600;
   font-size: x-large;
 }
 
+.profile-img {
+  display: flex;
+  justify-content: flex-end;
+}
+
 .user-btn {
   position: relative;
-  left: 90%;
+  background-image: url("../resources/default_user.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 60px;
+  height: 60px;
 }

@@ -14,4 +14,24 @@ export class AppComponent {
   goHome() {
     this.router.navigate(['/home']);
   }
+
+  logOut() {
+    this.router.navigate(['/login']);
+  }
+
+  isAuth() {
+    const state = this.router.routerState;
+
+    switch (state.snapshot.url) {
+      case '/login': {
+        return true;
+      }
+      case '/register': {
+        return true;
+      }
+      default: {
+        return false;
+      }
+    }
+  }
 }

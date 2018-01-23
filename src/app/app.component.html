@@ -6,11 +6,15 @@
       </span>
     </a>
   </mat-toolbar-row>
-  <mat-toolbar-row>
-    <a class="mat-button user-btn"><i class="material-icons">home</i></a>
+  <mat-toolbar-row class="profile">
+    <button mat-icon-button class="user-btn" [matMenuTriggerFor]="appMenu"></button>
+    <mat-menu #appMenu="matMenu" yPosition="below">
+      <button mat-menu-item> Settings </button>
+      <button mat-menu-item (click)="logOut()"> Log out </button>
+    </mat-menu>
   </mat-toolbar-row>
 </mat-toolbar>
 
-<div class="content">
+<div class="app-content" [ngStyle]="isAuth() ? {'display': 'flex'} : {}">
   <router-outlet></router-outlet>
 </div>
