@@ -11,10 +11,8 @@
   </div>
 </form>
 
-<div *ngFor="let todo of todos; let i = index">
+<!-- <div *ngFor="let todo of todos; let i = index">
   <div class="todo-content form-group">
-    <!--<input type="checkbox" (click)="changeTodoCompleteField(i)" (blur)="updateTodo(todo)"-->
-           <!--[checked]="isCompleted(todo)"/>-->
     <mat-toolbar>
       <i [class]="setClassTaskCompleted(todo)">
         {{todo.name}}
@@ -32,4 +30,42 @@
       </div>
     </mat-toolbar>
   </div>
+</div> -->
+
+<div class="board">
+  <mat-table #table0 [dataSource]="new">
+    <ng-container matColumnDef="new">
+        <mat-header-cell *matHeaderCellDef> New ToDo </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="editTodo(element)"> {{element.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['new']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['new'];"></mat-row>
+  </mat-table>
+
+  <mat-table #table1 [dataSource]="inProgress">
+    <ng-container matColumnDef="inProgress">
+        <mat-header-cell *matHeaderCellDef> In progress </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="editTodo(element)"> {{element.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['inProgress']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['inProgress'];"></mat-row>
+  </mat-table>
+
+  <mat-table #table2 [dataSource]="inTesting">
+    <ng-container matColumnDef="inTesting">
+        <mat-header-cell *matHeaderCellDef> In testing </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="editTodo(element)"> {{element.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['inTesting']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['inTesting'];"></mat-row>
+  </mat-table>
+
+  <mat-table #table1 [dataSource]="completedTodo">
+    <ng-container matColumnDef="completed">
+        <mat-header-cell *matHeaderCellDef> Completed </mat-header-cell>
+        <mat-cell *matCellDef="let element" (click)="editTodo(element)"> {{element.name}} </mat-cell>
+    </ng-container>
+    <mat-header-row *matHeaderRowDef="['completed']"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: ['completed'];"></mat-row>
+  </mat-table>
 </div>

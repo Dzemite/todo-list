@@ -14,6 +14,7 @@ import {TodoListService} from './todo-services/todo-list.service';
 import {HttpClient} from '@angular/common/http';
 import {TemplateDeleteDialogComponent} from '../dialogs/template-delete-dialog/template-delete-dialog.component';
 import {TemplateEditTodoDialogComponent} from '../dialogs/template-edit-todo-dialog/template-edit-todo-dialog.component';
+import { MatTableModule } from '@angular/material';
 
 @NgModule({
   imports: [
@@ -22,7 +23,8 @@ import {TemplateEditTodoDialogComponent} from '../dialogs/template-edit-todo-dia
     AngularFontAwesomeModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatTableModule
   ],
   declarations: [
     TodoComponent,

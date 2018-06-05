@@ -8,6 +8,13 @@
         <input matInput type="text" [(ngModel)]="todoForChange.name" formControlName="name"
                placeholder="Editing this task">
       </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Task status" [(value)]="_status">
+          <mat-option *ngFor="let status of statuses" [value]="status.value">
+              {{ status.viewValue }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </div>
     <div mat-dialog-actions class="buttons">
       <button mat-button [mat-dialog-close]="onSaveClick()" tabindex="2">Save</button>

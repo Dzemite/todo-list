@@ -6,7 +6,7 @@ import {FormBuilder, FormGroup, Validators, FormControl} from '@angular/forms';
 import {TemplateDeleteDialogComponent} from '../../dialogs/template-delete-dialog/template-delete-dialog.component';
 import {MatDialog} from '@angular/material';
 import {AppSettings} from '../../app.settings';
-import {TemplateEditTodoDialogComponent} from "../../dialogs/template-edit-todo-dialog/template-edit-todo-dialog.component";
+import {TemplateEditTodoDialogComponent} from '../../dialogs/template-edit-todo-dialog/template-edit-todo-dialog.component';
 
 @Component({
   moduleId: module.id,
@@ -20,6 +20,11 @@ import {TemplateEditTodoDialogComponent} from "../../dialogs/template-edit-todo-
 export class TodoListComponent implements OnInit {
 
   todos: Todo[];
+  new: Todo[];
+  inProgress: Todo[];
+  inTesting: Todo[];
+  completedTodo: Todo[];
+
   errorMessage: string;
   categoryId: string;
   categoryName: string;
@@ -61,7 +66,7 @@ export class TodoListComponent implements OnInit {
   addNewTodo(newTodo: string) {
     if (!newTodo || this.todoForm.get('todo').hasError('maxlength')) { return; }
 
-    const todo: Todo = new Todo(null, newTodo, false, this.categoryId);
+    const todo: Todo = new Todo(null, newTodo, this.categoryId);
     this.service.addTodo(todo)
       .subscribe(
         () => this.refreshTodos(),
@@ -124,7 +129,29 @@ export class TodoListComponent implements OnInit {
   private refreshTodos() {
     this.service.getTodos(this.categoryId)
       .subscribe(
-        todos => this.todos = todos,
+        todos => {
+          this.todos = todos;
+          this.new = [];
+          this.inProgress = [];
+          this.inTesting = [];
+          this.completedTodo = [];
+          if (this.todos) {
+            this.todos.forEach(todo => {
+              if (todo.inProgress && todo.inTesting && todo.completed) {
+                this.completedTodo.push(todo);
+              } else
+              if (todo.inProgress && todo.inTesting && !todo.completed) {
+                this.inTesting.push(todo);
+              } else
+              if (todo.inProgress && !todo.inTesting && !todo.completed) {
+                this.inProgress.push(todo);
+              } else
+              if (!todo.inProgress && !todo.inTesting && !todo.completed) {
+                this.new.push(todo);
+              }
+            });
+          }
+        },
         error => this.errorMessage = error
       );
   }
